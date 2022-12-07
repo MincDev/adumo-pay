@@ -7,4 +7,4 @@
 
 import Foundation
 
-protocol CodableEntity: Codable {}
+protocol Entity: Codable, Equatable {}
