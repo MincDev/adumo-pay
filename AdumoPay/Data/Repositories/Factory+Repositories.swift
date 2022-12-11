@@ -10,4 +10,5 @@ import Factory
 
 extension Container {
     static let authRepository = Factory<AuthRepository> { AuthRepositoryImpl() }
+    static let transRepository = Factory<TransactionRepository> { TransactionRepositoryImpl() }
 }

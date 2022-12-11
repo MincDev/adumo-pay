@@ -11,10 +11,11 @@ import Factory
 public class AEClient {
     public static let shared = AEClient()
     public var delegate: AEClientDelegate?
-
     private static var authData: AuthData?
-    
+
+    // Dependencies
     @Injected(Container.authRepository) private var authRepo
+    @Injected(Container.transRepository) private var transRepo
 
     // Do not allow initialization of class as its a singleton
     private init() {}
@@ -25,15 +26,15 @@ public class AEClient {
     /// - Parameters:
     ///     - clientId: The client ID obtained from Adumo
     ///     - secret: The client secret obtained from Adumo
-    public func authenticate(for clientId: String, using secret: String) async {
+    public func authenticate(for clientId: String, using secret: String) async -> ClientAuthResult {
         let result = await authRepo.getToken(for: clientId, using: secret)
 
         switch result as AuthenticationResult {
         case .success(let data):
             AEClient.authData = data
-            self.delegate?.onAuthenticated()
+            return .success
         case .failure(let error):
-            self.delegate?.onAuthenticationFailed(with: error)
+            return .failure(error: error)
         }
     }
 
@@ -47,7 +48,16 @@ public class AEClient {
         return AEClient.authData != nil
     }
 
-    public func initiateTransaction() {
-        
+    /// Initiates a transaction with a specific transaction input
+    ///
+    /// - Parameters:
+    ///     - transaction: The transaction object to process
+    public func initiate(with transaction: Transaction) async -> TransactionResult {
+        return await transRepo.initiate(with: transaction, authenticatedWith: AEClient.authData!)
     }
+}
+
+public enum ClientAuthResult {
+    case success
+    case failure(error: Error)
 }

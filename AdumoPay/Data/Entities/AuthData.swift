@@ -8,11 +8,20 @@
 import Foundation
 
 public struct AuthData: Entity {
-    public let accessToken: String
-    public let tokenType: String
-    public let expiry: Int
-    public let scope: String
-    public let jti: String
+    /// Token required as a bearer token for subsequent calls
+    let accessToken: String
+
+    /// Token type - Defaults to bearer
+    let tokenType: String
+
+    /// Lifespan of token validity in seconds
+    let expiry: Int
+
+    /// Auth scope - Defaults to read
+    let scope: String
+
+    /// According to OAuth 2.0 spec
+    let jti: String
 
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
