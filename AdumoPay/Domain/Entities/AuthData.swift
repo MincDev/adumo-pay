@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AuthData: CodableEntity {
+public struct AuthData: Entity {
     public let accessToken: String
     public let tokenType: String
     public let expiry: Int
