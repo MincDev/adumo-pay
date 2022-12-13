@@ -28,6 +28,10 @@ struct NetworkClientImpl: NetworkClient {
             request.httpBody = try JSONEncoder().encode(body)
         }
 
+        if debugMode {
+            debugPrint("Request Body: ******************* \n\n \(NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body")")
+        }
+
         return try await withCheckedThrowingContinuation { continuation in
             URLSession.shared.dataTask(with: request) { data, response, err in
                 if err != nil {
@@ -36,7 +40,7 @@ struct NetworkClientImpl: NetworkClient {
                 }
 
                 if debugMode {
-                    print("Response Body: ******************* \n\n \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "No Response Body")")
+                    debugPrint("Response Body: ******************* \n\n \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "No Response Body")")
                 }
 
                 if let safeData = data {
