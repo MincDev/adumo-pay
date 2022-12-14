@@ -25,8 +25,8 @@
 		8443E92F2940FE2100371C15 /* Factory+Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E92E2940FE2100371C15 /* Factory+Clients.swift */; };
 		8443E9312941E36F00371C15 /* NSError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E9302941E36F00371C15 /* NSError+Extension.swift */; };
 		8443E934294492A200371C15 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E933294492A200371C15 /* NetworkClient.swift */; };
-		8443E9372944951600371C15 /* InitiateTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E9362944951600371C15 /* InitiateTransactionUseCase.swift */; };
 		8443E9392944957500371C15 /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E9382944957500371C15 /* TransactionRepository.swift */; };
+		8449A3C4294A39C9003ECAAD /* NSMutableData+AppendString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -53,8 +53,8 @@
 		8443E92E2940FE2100371C15 /* Factory+Clients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+Clients.swift"; sourceTree = "<group>"; };
 		8443E9302941E36F00371C15 /* NSError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extension.swift"; sourceTree = "<group>"; };
 		8443E933294492A200371C15 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		8443E9362944951600371C15 /* InitiateTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateTransactionUseCase.swift; sourceTree = "<group>"; };
 		8443E9382944957500371C15 /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
+		8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableData+AppendString.swift"; sourceTree = "<group>"; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 				8443E8DB2938D6F700371C15 /* Delegates */,
 				8443E8DD2938D6F700371C15 /* Entities */,
 				8443E8DF2938D6F700371C15 /* Interfaces */,
-				8443E935294494DF00371C15 /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -216,14 +215,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		8443E935294494DF00371C15 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				8443E9362944951600371C15 /* InitiateTransactionUseCase.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		84F4BD452944A059003921EF /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				84F4BD4F29491973003921EF /* UIDevice+IPAddress.swift */,
+				8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -329,11 +321,11 @@
 			files = (
 				8443E8F22938D7FD00371C15 /* Entity.swift in Sources */,
 				8443E9282940F8C900371C15 /* AuthRepository.swift in Sources */,
-				8443E9372944951600371C15 /* InitiateTransactionUseCase.swift in Sources */,
 				8443E8E82938D6F800371C15 /* NetworkClientImpl.swift in Sources */,
 				8443E924293C957A00371C15 /* HTTPHeaders.swift in Sources */,
 				8443E92D2940FAE400371C15 /* Factory+Repositories.swift in Sources */,
 				84F4BD4D2945BEAA003921EF /* ErrorResponse.swift in Sources */,
+				8449A3C4294A39C9003ECAAD /* NSMutableData+AppendString.swift in Sources */,
 				8443E8ED2938D6F800371C15 /* AuthData.swift in Sources */,
 				8443E90029391E1100371C15 /* AEClientDelegate.swift in Sources */,
 				84F4BD472944A06B003921EF /* Transaction.swift in Sources */,

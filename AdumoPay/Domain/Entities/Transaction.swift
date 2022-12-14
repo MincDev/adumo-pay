@@ -77,7 +77,7 @@ public struct Transaction: Encodable {
     var uci: String?
 
     /// Not currently in use
-    var authCallbackUrl: String?
+    var authCallbackUrl: String
 
     /// UID of the client’s profile for stored card information
     var profileUid: String?
@@ -85,7 +85,25 @@ public struct Transaction: Encodable {
     /// User’s card token from their profile
     var token: String?
 
-    public init(applicationUid: String, merchantUid: String, value: Double, merchantReference: String, userAgent: String, budgetPeriod: Int? = nil, description: String? = nil, originatingTransactionId: String? = nil, cardNumber: String? = nil, expiryMonth: Int? = nil, expiryYear: Int? = nil, cardHolderFullName: String? = nil, saveCardDetails: Bool? = nil, uci: String? = nil, authCallbackUrl: String? = nil, profileUid: String? = nil, token: String? = nil) {
+    public init(
+        applicationUid: String,
+        merchantUid: String,
+        value: Double,
+        merchantReference: String,
+        userAgent: String,
+        budgetPeriod: Int? = nil,
+        description: String? = nil,
+        originatingTransactionId: String? = nil,
+        cardNumber: String? = nil,
+        expiryMonth: Int? = nil,
+        expiryYear: Int? = nil,
+        cardHolderFullName: String? = nil,
+        saveCardDetails: Bool? = nil,
+        uci: String? = nil,
+        authCallbackUrl: String = "https://www.noauthurl.com",
+        profileUid: String? = nil,
+        token: String? = nil
+    ) {
         self.applicationUid = applicationUid
         self.merchantUid = merchantUid
         self.value = value
