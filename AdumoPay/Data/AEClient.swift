@@ -8,6 +8,7 @@
 import Foundation
 import Factory
 import UIKit
+import SwiftUI
 
 public class AEClient {
     public static let shared = AEClient()
@@ -20,6 +21,10 @@ public class AEClient {
 
     // Do not allow initialization of class as its a singleton
     private init() {}
+
+    public func getNewWebView(viewController: UIViewController) -> UIViewController {
+        return UIHostingController(rootView: Web3DSecureView(viewModel: Web3DSecureViewModel(viewController: viewController, acsBody: AcsBody(TermUrl: "", PaReq: "", MD: ""), acsUrl: ""), config: Web3DSecureConfig()))
+    }
 
     /// Authenticates the client ID and secret and initialises the AEClient with authenticated data.
     /// This call must be made before attempting to make any subsequent calls to the framework
@@ -61,18 +66,24 @@ public class AEClient {
             if data.threeDSecureAuthRequired {
                 Task { @MainActor in
                     // 3DSecure is required. Initialise the WebView for BankServ
-                    let adumo3DSecure = Adumo3DSecureViewController(
-                        acsBody: AcsBody(
-                            TermUrl: transaction.authCallbackUrl,
-                            PaReq: data.acsPayload,
-                            MD: data.acsMD
-                        ),
-                        acsUrl: data.acsUrl
+                    let viewModel = Web3DSecureViewModel(viewController: viewController,
+                                                         acsBody: AcsBody(TermUrl: transaction.authCallbackUrl,
+                                                                          PaReq: data.acsPayload,
+                                                                          MD: data.acsMD),
+                                                         acsUrl: data.acsUrl)
+
+                    viewModel.delegate = self
+
+                    let webView = Web3DSecureView(
+                        viewModel: viewModel,
+                        config: Web3DSecureConfig()
                     )
-                    adumo3DSecure.delegate = self
+                    let adumo3DSecure = UIHostingController(rootView: webView)
+                    let nav = UINavigationController(rootViewController: adumo3DSecure)
+                    nav.modalPresentationStyle = .pageSheet
 
                     // Present View "Modally"
-                    viewController.present(adumo3DSecure, animated: true, completion: nil)
+                    viewController.present(nav, animated: true, completion: nil)
                 }
             } else {
                 // Can authorise

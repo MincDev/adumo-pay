@@ -14,8 +14,6 @@
 		8443E8EB2938D6F800371C15 /* AEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D92938D6F700371C15 /* AEClient.swift */; };
 		8443E8EC2938D6F800371C15 /* Adumo3DSecureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8DC2938D6F700371C15 /* Adumo3DSecureDelegate.swift */; };
 		8443E8ED2938D6F800371C15 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8DE2938D6F700371C15 /* AuthData.swift */; };
-		8443E8F02938D6F800371C15 /* Adumo3DSecureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */; };
-		8443E8F12938D6F800371C15 /* Adumo3DSecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */; };
 		8443E8F22938D7FD00371C15 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8E32938D6F700371C15 /* Entity.swift */; };
 		8443E90029391E1100371C15 /* AEClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8FF29391E1100371C15 /* AEClientDelegate.swift */; };
 		8443E924293C957A00371C15 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E923293C957A00371C15 /* HTTPHeaders.swift */; };
@@ -30,6 +28,10 @@
 		8449A3C6294BB51D003ECAAD /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C5294BB51D003ECAAD /* ApiEndpoint.swift */; };
 		8449A3C8294BB9D1003ECAAD /* BankservData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C7294BB9D1003ECAAD /* BankservData.swift */; };
 		8449A3CA294BBB54003ECAAD /* BankservDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C9294BBB54003ECAAD /* BankservDto.swift */; };
+		8449A3D1294BC12B003ECAAD /* Web3DSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */; };
+		8449A3D3294BC600003ECAAD /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D2294BC600003ECAAD /* WebView.swift */; };
+		8449A3D5294BC703003ECAAD /* Web3DSecureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */; };
+		8449A3D7294BC716003ECAAD /* Web3DSecureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -47,8 +49,6 @@
 		8443E8DC2938D6F700371C15 /* Adumo3DSecureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adumo3DSecureDelegate.swift; sourceTree = "<group>"; };
 		8443E8DE2938D6F700371C15 /* AuthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		8443E8E32938D6F700371C15 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Adumo3DSecureView.xib; sourceTree = "<group>"; };
-		8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adumo3DSecureViewController.swift; sourceTree = "<group>"; };
 		8443E8FF29391E1100371C15 /* AEClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEClientDelegate.swift; sourceTree = "<group>"; };
 		8443E923293C957A00371C15 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		8443E9272940F8C900371C15 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -61,6 +61,10 @@
 		8449A3C5294BB51D003ECAAD /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		8449A3C7294BB9D1003ECAAD /* BankservData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankservData.swift; sourceTree = "<group>"; };
 		8449A3C9294BBB54003ECAAD /* BankservDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankservDto.swift; sourceTree = "<group>"; };
+		8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureView.swift; sourceTree = "<group>"; };
+		8449A3D2294BC600003ECAAD /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureViewModel.swift; sourceTree = "<group>"; };
+		8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureConfig.swift; sourceTree = "<group>"; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -192,18 +196,9 @@
 		8443E8E42938D6F800371C15 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */,
-				8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */,
-				8443E8E72938D6F800371C15 /* 3DSecure */,
+				8449A3CE294BC107003ECAAD /* Views */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		8443E8E72938D6F800371C15 /* 3DSecure */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 3DSecure;
 			sourceTree = "<group>";
 		};
 		8443E9262940F8AA00371C15 /* Repositories */ = {
@@ -229,6 +224,25 @@
 				8449A3C9294BBB54003ECAAD /* BankservDto.swift */,
 			);
 			path = Dto;
+			sourceTree = "<group>";
+		};
+		8449A3CE294BC107003ECAAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8449A3CF294BC110003ECAAD /* Web3DSecure */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8449A3CF294BC110003ECAAD /* Web3DSecure */ = {
+			isa = PBXGroup;
+			children = (
+				8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */,
+				8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */,
+				8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */,
+				8449A3D2294BC600003ECAAD /* WebView.swift */,
+			);
+			path = Web3DSecure;
 			sourceTree = "<group>";
 		};
 		84F4BD452944A059003921EF /* Entities */ = {
@@ -325,7 +339,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8443E8F02938D6F800371C15 /* Adumo3DSecureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8449A3D3294BC600003ECAAD /* WebView.swift in Sources */,
+				8449A3D5294BC703003ECAAD /* Web3DSecureViewModel.swift in Sources */,
 				8443E8F22938D7FD00371C15 /* Entity.swift in Sources */,
 				8443E9282940F8C900371C15 /* AuthRepository.swift in Sources */,
 				8443E8E82938D6F800371C15 /* NetworkClientImpl.swift in Sources */,
@@ -351,9 +366,9 @@
 				84F4BD472944A06B003921EF /* Transaction.swift in Sources */,
 				8443E9392944957500371C15 /* TransactionRepository.swift in Sources */,
 				84F4BD5029491973003921EF /* UIDevice+IPAddress.swift in Sources */,
+				8449A3D7294BC716003ECAAD /* Web3DSecureConfig.swift in Sources */,
 				8443E8E92938D6F800371C15 /* AuthRepositoryImpl.swift in Sources */,
 				8443E8EB2938D6F800371C15 /* AEClient.swift in Sources */,
-				8443E8F12938D6F800371C15 /* Adumo3DSecureViewController.swift in Sources */,
 				8443E92F2940FE2100371C15 /* Factory+Clients.swift in Sources */,
 				84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */,
 				8443E934294492A200371C15 /* NetworkClient.swift in Sources */,
@@ -361,6 +376,7 @@
 				84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */,
 				8443E9312941E36F00371C15 /* NSError+Extension.swift in Sources */,
 				8443E8EC2938D6F800371C15 /* Adumo3DSecureDelegate.swift in Sources */,
+				8449A3D1294BC12B003ECAAD /* Web3DSecureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
