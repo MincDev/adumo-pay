@@ -27,7 +27,7 @@ public class AEClient {
     /// - Parameters:
     ///     - clientId: The client ID obtained from Adumo
     ///     - secret: The client secret obtained from Adumo
-    public func authenticate(for clientId: String, using secret: String) async -> ClientAuthResult {
+    public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> ClientAuthResult {
         let result = await authRepo.getToken(for: clientId, using: secret)
 
         switch result as AuthenticationResult {
@@ -76,9 +76,10 @@ public class AEClient {
                 }
             } else {
                 // Can authorise
+                self.delegate?.onTransactionInitiated(uidTransactionIndex: data.transactionId, PARes: data.acsPayload)
             }
         case .failure(let error):
-            debugPrint(error.localizedDescription)
+            self.delegate?.onTransactionInitiateFailed(with: error)
         }
     }
 }
@@ -91,12 +92,38 @@ public enum ClientAuthResult {
 // MARK: Adumo3DSecureDelegate
 
 extension AEClient: Adumo3DSecureDelegate {
-    public func didFinishOTPInput(with transactionIndex: String, using pares: String) {
-        self.delegate?.on3DSecureFinished(uidTransactionIndex: transactionIndex, PARes: pares)
+    func didFinishOTPInput(transactionIndex: String, pares: String) {
+        Task {
+            let result = await transRepo.authenticate(with: .init(md: transactionIndex, payload: pares), authenticatedWith: AEClient.authData!)
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    if Int(data.errorCode) == 200 {
+                        self.delegate?.onTransactionInitiated(uidTransactionIndex: transactionIndex, PARes: pares)
+                    } else {
+                        self.delegate?.onTransactionInitiateFailed(with: BankservError.reason(data.errorMsg))
+                    }
+                case .failure(let error):
+                    self.delegate?.onTransactionInitiateFailed(with: error)
+                }
+            }
+        }
     }
 
-    public func didCancelOTPInput() {
+    func didCancelOTPInput() {
         AEClient.authData = nil
-        self.delegate?.on3DSecureCancelled()
+        self.delegate?.onTransactionInitiateCancelled()
+    }
+}
+
+enum BankservError: Error {
+    case reason(_ errorString: String)
+
+    var description: String {
+        switch self {
+        case .reason(let errorString):
+            return errorString
+        }
     }
 }

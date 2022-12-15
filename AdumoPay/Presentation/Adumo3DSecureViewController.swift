@@ -109,18 +109,18 @@ class Adumo3DSecureViewController: UIViewController, WKNavigationDelegate {
         if let url = navigationAction.request.url, url.absoluteString == acsBody.TermUrl {
             if let aBody = navigationAction.request.httpBody {
                 let bodyArr = String(data: aBody, encoding: .utf8)?.removingPercentEncoding?.components(separatedBy: "&")
-                var TransIndex: String = ""
-                var Payload: String = ""
+                var transIndex: String = ""
+                var payload: String = ""
                 for item in bodyArr! {
                     if (item.contains("MD=")) {
-                        TransIndex = item.replacingOccurrences(of: "MD=", with: "")
+                        transIndex = item.replacingOccurrences(of: "MD=", with: "")
                     } else {
-                        Payload = item.replacingOccurrences(of: "PaRes=", with: "")
+                        payload = item.replacingOccurrences(of: "PaRes=", with: "")
                     }
                 }
 
                 self.dismiss(animated: true) {
-                    self.delegate?.didFinishOTPInput(with: TransIndex, using: Payload)
+                    self.delegate?.didFinishOTPInput(transactionIndex: transIndex, pares: payload)
                 }
             }
         }

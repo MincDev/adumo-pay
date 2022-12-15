@@ -7,8 +7,7 @@
 
 import Foundation
 
-@objc public protocol Adumo3DSecureDelegate {
-    func didFinishOTPInput(with transactionIndex: String, using pares: String)
-
+protocol Adumo3DSecureDelegate {
+    func didFinishOTPInput(transactionIndex: String, pares: String)
     func didCancelOTPInput()
 }

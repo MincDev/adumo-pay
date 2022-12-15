@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Adumo3DSecureViewController" customModule="AdumoPayment" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Adumo3DSecureViewController" customModule="AdumoPay" customModuleProvider="target">
             <connections>
                 <outlet property="progressView" destination="j9F-9O-2XU" id="kGb-KP-Omo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="9KT-w2-QFa"/>
@@ -47,16 +48,17 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dr4-9e-URf" secondAttribute="trailing" id="1vR-va-ynl"/>
-                <constraint firstItem="dr4-9e-URf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="I16-dh-qOs"/>
-                <constraint firstItem="YkF-Mm-WWo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KN4-0r-NCD"/>
-                <constraint firstItem="j9F-9O-2XU" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WLd-Ia-2Gh"/>
-                <constraint firstItem="YkF-Mm-WWo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hLc-pw-d3w"/>
-                <constraint firstItem="dr4-9e-URf" firstAttribute="top" secondItem="j9F-9O-2XU" secondAttribute="bottom" id="pqB-rg-pbo"/>
-                <constraint firstItem="YkF-Mm-WWo" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="rgf-R9-62j"/>
-                <constraint firstItem="j9F-9O-2XU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tTg-Da-p8f"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dr4-9e-URf" secondAttribute="bottom" id="ttY-De-Vnf"/>
-                <constraint firstItem="j9F-9O-2XU" firstAttribute="top" secondItem="YkF-Mm-WWo" secondAttribute="bottom" id="uOn-cb-rni"/>
+                <constraint firstItem="YkF-Mm-WWo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6oM-gl-vSK"/>
+                <constraint firstItem="j9F-9O-2XU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="E8G-dc-2rG"/>
+                <constraint firstItem="dr4-9e-URf" firstAttribute="top" secondItem="j9F-9O-2XU" secondAttribute="bottom" id="KXw-6a-kdQ"/>
+                <constraint firstItem="j9F-9O-2XU" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NvN-X3-R6A"/>
+                <constraint firstItem="dr4-9e-URf" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="NzF-uM-W91"/>
+                <constraint firstItem="YkF-Mm-WWo" firstAttribute="leading" secondItem="j9F-9O-2XU" secondAttribute="leading" id="Rmg-Rc-gvI"/>
+                <constraint firstItem="j9F-9O-2XU" firstAttribute="top" secondItem="YkF-Mm-WWo" secondAttribute="bottom" id="a0v-yS-hcC"/>
+                <constraint firstItem="dr4-9e-URf" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="fvc-1r-66b"/>
+                <constraint firstItem="dr4-9e-URf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="g8s-ya-gyP"/>
+                <constraint firstItem="dr4-9e-URf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vhg-gY-BQQ"/>
+                <constraint firstItem="YkF-Mm-WWo" firstAttribute="trailing" secondItem="j9F-9O-2XU" secondAttribute="trailing" id="xRZ-bj-qn8"/>
             </constraints>
             <point key="canvasLocation" x="76" y="19.340329835082461"/>
         </view>

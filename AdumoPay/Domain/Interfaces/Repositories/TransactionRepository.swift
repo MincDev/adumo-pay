@@ -9,9 +9,15 @@ import Foundation
 
 protocol TransactionRepository {
     func initiate(with transaction: Transaction, authenticatedWith: AuthData) async -> TransactionResult
+    func authenticate(with body: BankservDto, authenticatedWith authData: AuthData) async -> BankservResult
 }
 
 public enum TransactionResult {
     case success(transaction: TransactionData)
+    case failure(error: Error)
+}
+
+internal enum BankservResult {
+    case success(data: BankservData)
     case failure(error: Error)
 }
