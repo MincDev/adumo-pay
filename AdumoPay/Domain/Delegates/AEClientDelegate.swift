@@ -8,7 +8,7 @@
 import Foundation
 
 @objc public protocol AEClientDelegate {
-    func onTransactionInitiated(uidTransactionIndex: String, PARes: String)
+    func onTransactionInitiated(uidTransactionIndex: String, PARes: String?)
     func onTransactionInitiateFailed(with error: Error)
     func onTransactionInitiateCancelled()
 

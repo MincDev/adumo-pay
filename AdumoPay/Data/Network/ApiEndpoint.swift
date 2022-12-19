@@ -11,6 +11,10 @@ enum ApiEndpoint {
     case authToken
     case initiateTransaction
     case authenticate3ds
+    case authorise
+    case reverse
+    case settle
+    case refund
 
     var path: String {
         switch self {
@@ -20,6 +24,14 @@ enum ApiEndpoint {
             return "/products/payments/v1/card/initiate"
         case .authenticate3ds:
             return "/product/authentication/v1/tds/authenticate/"
+        case .authorise:
+            return "/products/payments/v1/card/authorise"
+        case .reverse:
+            return "/products/payments/v1/card/reverse"
+        case .settle:
+            return "/products/payments/v1/card/settle"
+        case .refund:
+            return "/products/payments/v1/card/refund"
         }
     }
 }

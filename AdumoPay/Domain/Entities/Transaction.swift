@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct Transaction: Encodable {
+public class Transaction: Encodable {
     /// Your Application UID provided by Adumo Online
     var applicationUid: String
 
@@ -120,6 +120,10 @@ public struct Transaction: Encodable {
         self.uci = uci
         self.authCallbackUrl = authCallbackUrl
         self.profileUid = profileUid
+        self.token = token
+    }
+
+    internal func setToken(_ token: String) {
         self.token = token
     }
 

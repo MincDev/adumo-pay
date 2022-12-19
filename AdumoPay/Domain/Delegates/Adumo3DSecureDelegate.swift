@@ -8,6 +8,5 @@
 import Foundation
 
 protocol Adumo3DSecureDelegate {
-    func didFinishOTPInput(transactionIndex: String, pares: String)
-    func didCancelOTPInput()
+    func didDismissWebView(isCancel: Bool, transactionIndex: String?, pares: String?, cvvRequired: Bool)
 }

@@ -39,6 +39,9 @@ struct Web3DSecureView: View {
         .onAppear {
             viewModel.onLoad()
         }
+        .onDisappear {
+            viewModel.onDisappear()
+        }
     }
 }
 
@@ -53,7 +56,8 @@ struct Web3DSecureView_Previews: PreviewProvider {
                         PaReq: "",
                         MD: ""
                     ),
-                    acsUrl: "https://www.example.com/"
+                    acsUrl: "https://www.example.com/",
+                    cvvRequired: false
                 ),
                 config: Web3DSecureConfig())
         }

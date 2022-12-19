@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AuthData: Entity {
+struct AuthData: Entity {
     /// Token required as a bearer token for subsequent calls
     let accessToken: String
 

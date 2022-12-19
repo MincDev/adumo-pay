@@ -16,13 +16,16 @@ class Web3DSecureViewModel: NSObject, ObservableObject {
     var acsUrl: String
     var delegate: Adumo3DSecureDelegate?
     var webView: WKWebView
+    var successful: Bool = false
+    var cvvRequired: Bool
 
     @Published var loadProgress: Double = 0.0
 
-    public init(viewController: UIViewController, acsBody: AcsBody, acsUrl: String) {
+    public init(viewController: UIViewController, acsBody: AcsBody, acsUrl: String, cvvRequired: Bool) {
         self.viewController = viewController
         self.acsBody = acsBody
         self.acsUrl = acsUrl
+        self.cvvRequired = cvvRequired
         self.webView = WKWebView()
     }
 
@@ -38,14 +41,19 @@ class Web3DSecureViewModel: NSObject, ObservableObject {
     }
 
     func didTapCancel() {
-        viewController.presentedViewController?.dismiss(animated: true) {
-            self.delegate?.didCancelOTPInput()
-        }
+        viewController.presentedViewController?.dismiss(animated: true)
     }
 
     func onWebViewFinish(transactionIndex: String, pares: String) {
+        successful = true
         viewController.dismiss(animated: true) {
-            self.delegate?.didFinishOTPInput(transactionIndex: transactionIndex, pares: pares)
+            self.delegate?.didDismissWebView(isCancel: false, transactionIndex: transactionIndex, pares: pares, cvvRequired: self.cvvRequired)
+        }
+    }
+
+    func onDisappear() {
+        if !successful {
+            self.delegate?.didDismissWebView(isCancel: true, transactionIndex: nil, pares: nil, cvvRequired: false)
         }
     }
 }
