@@ -21,10 +21,6 @@ final class TransactionRepositoryImpl: TransactionRepository {
         network.httpMethod = .post
         network.httpBody = transaction
 
-        #if DEBUG
-        network.debugMode = true
-        #endif
-
         do {
             let result = try await network.execute(TransactionData.self, using: url)
             return .success(transaction: result)
@@ -42,10 +38,6 @@ final class TransactionRepositoryImpl: TransactionRepository {
         network.httpMethod = .post
         network.httpBody = body
 
-        #if DEBUG
-        network.debugMode = true
-        #endif
-
         do {
             let result = try await network.execute(BankservData.self, using: url)
             return .success(data: result)
@@ -62,13 +54,27 @@ final class TransactionRepositoryImpl: TransactionRepository {
         ]
         network.httpMethod = .post
         network.httpBody = transaction
-
-        #if DEBUG
         network.debugMode = true
-        #endif
 
         do {
             let result = try await network.execute(AuthoriseData.self, using: url)
+            return .success(data: result)
+        } catch {
+            return .failure(error: error)
+        }
+    }
+
+    func reverse(transactionId: String, authenticateWith authData: AuthData) async -> ReverseResult {
+        let url = Environment.url.appendingPathComponent(ApiEndpoint.reverse.path).absoluteString
+        network.headers = [
+            "Content-Type": "application/json",
+            "Authorization": "\(authData.tokenType.capitalized) \(authData.accessToken)"
+        ]
+        network.httpMethod = .post
+        network.httpBody = ReverseDto(transactionId: transactionId)
+
+        do {
+            let result = try await network.execute(ReverseData.self, using: url)
             return .success(data: result)
         } catch {
             return .failure(error: error)

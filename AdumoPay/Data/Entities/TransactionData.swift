@@ -9,13 +9,13 @@ import Foundation
 
 struct TransactionData: Entity {
     /// UID of transaction
-    let transactionId: String
+    let transactionId: String?
 
     /// 3DSecure required for transaction or not
-    let threeDSecureAuthRequired: Bool
+    let threeDSecureAuthRequired: Bool?
 
     /// CVV required for transaction or not
-    let cvvRequired: Bool
+    let cvvRequired: Bool?
 
     /// Error code if error occurred
     let errorCode: String?
@@ -40,4 +40,19 @@ struct TransactionData: Entity {
 
     /// UID for created user profile
     let profileUid: String?
+
+    /// Country of issue for the card used
+    let cardCountry: String?
+
+    /// Code for currency used in transaction
+    let currencyCode: String?
+
+    /// Bankserv ECI flag
+    let eciFlag: String?
+
+    /// Bank authorisation code
+    let authorisationCode: String?
+
+    /// Bank processor response
+    let processorResponse: String?
 }

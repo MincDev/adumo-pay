@@ -26,8 +26,8 @@ public class AEClient {
     /// This call must be made before attempting to make any subsequent calls to the framework
     ///
     /// - Parameters:
-    ///     - clientId: The client ID obtained from Adumo
-    ///     - secret: The client secret obtained from Adumo
+    ///    - clientId: The client ID obtained from Adumo
+    ///    - secret: The client secret obtained from Adumo
     public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> ClientResult<Any?> {
         let result = await authRepo.getToken(for: clientId, using: secret)
 
@@ -55,20 +55,20 @@ public class AEClient {
     /// Initiates a transaction with a specific transaction input
     ///
     /// - Parameters:
-    ///     - transaction: The transaction object to process
+    ///    - transaction: The transaction object to process
     public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> ClientResult<InitiateResult> {
         transaction.token = AEClient.authData?.accessToken
         let result = await transRepo.initiate(with: transaction, authenticatedWith: AEClient.authData!)
 
         return await withCheckedContinuation { continuation in
+            webViewContinuation = continuation
+
             Task { @MainActor in
                 switch result {
                 case .success(let data):
-                    if data.threeDSecureAuthRequired {
-                        webViewContinuation = continuation
-
+                    if data.threeDSecureAuthRequired ?? false {
                         guard let payload = data.acsPayload, let md = data.acsMD else {
-                            webViewContinuation?.resume(returning: .failure(error: InternalError.reason("Required information not obtained from payment gateway.")))
+                            webViewContinuation?.resume(returning: .failure(error: InternalError("Required information not obtained from payment gateway.")))
                             return
                         }
 
@@ -78,7 +78,7 @@ public class AEClient {
                                                                               PaReq: payload,
                                                                               MD: md),
                                                              acsUrl: data.acsUrl!,
-                                                             cvvRequired: data.cvvRequired)
+                                                             cvvRequired: data.cvvRequired ?? false)
 
                         viewModel.delegate = self
 
@@ -95,9 +95,14 @@ public class AEClient {
 
                     } else {
                         // Can authorise
-                        webViewContinuation?.resume(returning: .success(.init(uidTransactionIndex: data.transactionId,
-                                                                              PARes: data.acsPayload!,
-                                                                              cvvRequired: data.cvvRequired)))
+                        guard let transactionId = data.transactionId else {
+                            webViewContinuation?.resume(returning: .failure(error: InternalError(data.message ?? "Unknown Error")))
+                            return
+                        }
+
+                        webViewContinuation?.resume(returning: .success(.init(uidTransactionIndex: transactionId,
+                                                                              PARes: data.acsPayload,
+                                                                              cvvRequired: data.cvvRequired ?? false)))
                     }
                 case .failure(let error):
                     webViewContinuation?.resume(returning: .failure(error: error))
@@ -109,14 +114,21 @@ public class AEClient {
     /// Authorises funds on the user’s card.
     ///
     /// - Parameters:
-    ///     - transactionId: The UUID obtained from the initiate call
-    ///     - amount: The amount to be authorised
-    ///     - cvv: The card cvv number if required. This is indicated from the initiate response
+    ///    - transactionId: The UUID obtained from the initiate call
+    ///    - amount: The amount to be authorised
+    ///    - cvv: The card cvv number if required. This is indicated from the initiate response
     /// - Returns: AuthoriseResult
     public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> AuthoriseResult {
         let authDto = AuthoriseDto(transactionId: transactionId, amount: amount, cvv: cvv)
-        let result = await transRepo.authorise(with: authDto, authenticateWith: AEClient.authData!)
-        return result
+        return await transRepo.authorise(with: authDto, authenticateWith: AEClient.authData!)
+    }
+
+    /// Reverse authorisation of a transaction.
+    ///
+    ///  - Parameters:
+    ///     - transactionId: The UUID of the transaction to be reversed
+    public func reverse(transactionId: String) async -> ReverseResult {
+        return await transRepo.reverse(transactionId: transactionId, authenticateWith: AEClient.authData!)
     }
 }
 
@@ -128,12 +140,12 @@ extension AEClient: Adumo3DSecureDelegate {
         if !isCancel {
             Task {
                 guard let md = transactionIndex else {
-                    webViewContinuation?.resume(returning: .failure(error: InternalError.reason("Transaction was not successfully initiated. Missing transaction index.")))
+                    webViewContinuation?.resume(returning: .failure(error: InternalError("Transaction was not successfully initiated. Missing transaction index.")))
                     return
                 }
 
                 guard let payload = pares else {
-                    webViewContinuation?.resume(returning: .failure(error: InternalError.reason("Transaction was not successfully initiated. Missing payload.")))
+                    webViewContinuation?.resume(returning: .failure(error: InternalError("Transaction was not successfully initiated. Missing payload.")))
                     return
                 }
 
@@ -147,7 +159,7 @@ extension AEClient: Adumo3DSecureDelegate {
                                                                                        PARes: payload,
                                                                                        cvvRequired: cvvRequired)))
                         } else {
-                            self.webViewContinuation?.resume(returning: .failure(error: InternalError.reason(data.errorMsg)))
+                            self.webViewContinuation?.resume(returning: .failure(error: InternalError(data.errorMsg)))
                         }
                     case .failure(let error):
                         self.webViewContinuation?.resume(returning: .failure(error: error))
@@ -169,17 +181,19 @@ public enum ClientResult<T> {
 
 public struct InitiateResult {
     public let uidTransactionIndex: String
-    public let PARes: String
+    public let PARes: String?
     public let cvvRequired: Bool
 }
 
-enum InternalError: Error {
-    case reason(_ errorString: String)
+struct InternalError {
+    let message: String
 
-    var description: String {
-        switch self {
-        case .reason(let errorString):
-            return errorString
-        }
+    init(_ message: String) {
+        self.message = message
     }
 }
+
+extension InternalError: LocalizedError {
+    var errorDescription: String? { return message }
+}
+

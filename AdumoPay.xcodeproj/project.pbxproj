@@ -34,6 +34,8 @@
 		8449A3D7294BC716003ECAAD /* Web3DSecureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */; };
 		8449A3DC29502E2C003ECAAD /* AuthoriseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */; };
 		8449A3DE29502E8B003ECAAD /* AuthoriseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */; };
+		8449A3E0296A0918003ECAAD /* ReverseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DF296A0918003ECAAD /* ReverseDto.swift */; };
+		8449A3E2296A0CF3003ECAAD /* ReverseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E1296A0CF3003ECAAD /* ReverseData.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -69,6 +71,8 @@
 		8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureConfig.swift; sourceTree = "<group>"; };
 		8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseData.swift; sourceTree = "<group>"; };
 		8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseDto.swift; sourceTree = "<group>"; };
+		8449A3DF296A0918003ECAAD /* ReverseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseDto.swift; sourceTree = "<group>"; };
+		8449A3E1296A0CF3003ECAAD /* ReverseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseData.swift; sourceTree = "<group>"; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			children = (
 				8449A3C9294BBB54003ECAAD /* BankservDto.swift */,
 				8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */,
+				8449A3DF296A0918003ECAAD /* ReverseDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				84F4BD482944A0FA003921EF /* TransactionData.swift */,
 				8449A3C7294BB9D1003ECAAD /* BankservData.swift */,
 				8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */,
+				8449A3E1296A0CF3003ECAAD /* ReverseData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -356,6 +362,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8449A3D3294BC600003ECAAD /* WebView.swift in Sources */,
+				8449A3E0296A0918003ECAAD /* ReverseDto.swift in Sources */,
+				8449A3E2296A0CF3003ECAAD /* ReverseData.swift in Sources */,
 				8449A3D5294BC703003ECAAD /* Web3DSecureViewModel.swift in Sources */,
 				8449A3DC29502E2C003ECAAD /* AuthoriseData.swift in Sources */,
 				8443E8F22938D7FD00371C15 /* Entity.swift in Sources */,
