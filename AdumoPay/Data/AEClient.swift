@@ -14,10 +14,10 @@ public class AEClient {
     public static let shared = AEClient()
     public var delegate: AEClientDelegate?
     private static var authData: AuthData?
+    private var webViewContinuation: CheckedContinuation<ClientResult<InitiateResult>, Never>?
 
     // Dependencies
-    @LazyInjected(Container.authRepository) private var authRepo
-    @LazyInjected(Container.transRepository) private var transRepo
+    @LazyInjected(Container.useCases) private var useCases
 
     // Do not allow initialization of class as its a singleton
     private init() {}
@@ -29,7 +29,7 @@ public class AEClient {
     ///    - clientId: The client ID obtained from Adumo
     ///    - secret: The client secret obtained from Adumo
     public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> ClientResult<Any?> {
-        let result = await authRepo.getToken(for: clientId, using: secret)
+        let result = await useCases.authenticate.execute(for: clientId, using: secret)
 
         switch result as AuthenticationResult {
         case .success(let data):
@@ -50,15 +50,13 @@ public class AEClient {
         return AEClient.authData != nil
     }
 
-    private var webViewContinuation: CheckedContinuation<ClientResult<InitiateResult>, Never>?
-
     /// Initiates a transaction with a specific transaction input
     ///
     /// - Parameters:
     ///    - transaction: The transaction object to process
     public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> ClientResult<InitiateResult> {
         transaction.token = AEClient.authData?.accessToken
-        let result = await transRepo.initiate(with: transaction, authenticatedWith: AEClient.authData!)
+        let result = await useCases.initiate.execute(with: transaction, authenticatedWith: AEClient.authData!)
 
         return await withCheckedContinuation { continuation in
             webViewContinuation = continuation
@@ -120,15 +118,38 @@ public class AEClient {
     /// - Returns: AuthoriseResult
     public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> AuthoriseResult {
         let authDto = AuthoriseDto(transactionId: transactionId, amount: amount, cvv: cvv)
-        return await transRepo.authorise(with: authDto, authenticateWith: AEClient.authData!)
+        return await useCases.authorise.execute(with: authDto, authenticateWith: AEClient.authData!)
     }
 
     /// Reverse authorisation of a transaction.
     ///
     ///  - Parameters:
     ///     - transactionId: The UUID of the transaction to be reversed
+    ///  - Returns: ReverseResult
     public func reverse(transactionId: String) async -> ReverseResult {
-        return await transRepo.reverse(transactionId: transactionId, authenticateWith: AEClient.authData!)
+        return await useCases.reverse.execute(transactionId: transactionId, authenticateWith: AEClient.authData!)
+    }
+
+    /// Settle the authorised amount to the merchant’s account.
+    ///
+    /// - Parameters:
+    ///    - transactionId: The UUID of the transaction to be settled
+    ///    - amount: The amount to be settled
+    /// - Returns: SettleResult
+    public func settle(transactionId: String, amount: Double) async -> SettleResult {
+        let settleDto = SettleDto(transactionId: transactionId, amount: amount)
+        return await useCases.settle.execute(with: settleDto, authenticatedWith: AEClient.authData!)
+    }
+
+    /// Refund a settled transaction.
+    ///
+    /// - Parameters:
+    ///    - transactionId: The UUID of the transaction to be settled
+    ///    - amount: The amount to be settled
+    /// - Returns: RefundResult
+    public func refund(transactionId: String, amount: Double) async -> RefundResult {
+        let refundDto = RefundDto(transactionId: transactionId, amount: amount)
+        return await useCases.refund.execute(with: refundDto, authenticatedWith: AEClient.authData!)
     }
 }
 
@@ -149,7 +170,8 @@ extension AEClient: Adumo3DSecureDelegate {
                     return
                 }
 
-                let result = await transRepo.authenticate(with: .init(md: md, payload: payload), authenticatedWith: AEClient.authData!)
+                let result = await useCases.verify.execute(with: .init(md: md, payload: payload),
+                                                           authenticatedWith: AEClient.authData!)
 
                 DispatchQueue.main.async {
                     switch result {

@@ -19,6 +19,11 @@ enum TransactionInitiateResult {
     case failure(error: Error)
 }
 
+internal enum BankservResult {
+    case success(data: BankservData)
+    case failure(error: Error)
+}
+
 public enum AuthoriseResult {
     case success(data: AuthoriseData)
     case failure(error: Error)
@@ -29,7 +34,12 @@ public enum ReverseResult {
     case failure(error: Error)
 }
 
-internal enum BankservResult {
-    case success(data: BankservData)
+public enum SettleResult {
+    case success(data: SettleData)
+    case failure(error: Error)
+}
+
+public enum RefundResult {
+    case success(data: RefundData)
     case failure(error: Error)
 }

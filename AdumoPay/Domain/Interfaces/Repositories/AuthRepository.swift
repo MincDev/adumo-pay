@@ -11,8 +11,8 @@ protocol AuthRepository {
     /// Returns an AuthenticationResult which contains either a success or failure
     ///
     /// - Parameters:
-    ///     - clientId: The client id to be used in authentication
-    ///     - secret: The client secret to be used in authentication
+    ///    - clientId: The client id to be used in authentication
+    ///    - secret: The client secret to be used in authentication
     /// - Returns: AuthenticationResult
     func getToken(for clientId: String, using secret: String) async -> AuthenticationResult
 }
