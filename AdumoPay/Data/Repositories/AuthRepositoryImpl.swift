@@ -20,7 +20,7 @@ final class AuthRepositoryImpl: AuthRepository {
             let data = try await network.execute(AuthData.self, using: urlString)
             return .success(data: data)
         } catch  {
-            return .failure(error: error)
+            return .failure(error: error as NSError)
         }
     }
 }

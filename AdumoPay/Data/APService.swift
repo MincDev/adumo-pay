@@ -10,8 +10,8 @@ import Factory
 import UIKit
 import SwiftUI
 
-public class AEClient {
-    public static let shared = AEClient()
+public class APService: APServiceProtocol {
+    public static let shared = APService()
     public var delegate: AEClientDelegate?
     private static var authData: AuthData?
     private var webViewContinuation: CheckedContinuation<ClientResult<InitiateResult>, Never>?
@@ -33,7 +33,7 @@ public class AEClient {
 
         switch result as AuthenticationResult {
         case .success(let data):
-            AEClient.authData = data
+            APService.authData = data
             return .success(nil)
         case .failure(let error):
             return .failure(error: error)
@@ -42,12 +42,12 @@ public class AEClient {
 
     /// Destroys an authenticated session
     public func destroy() {
-        AEClient.authData = nil
+        APService.authData = nil
     }
 
     /// Check if there is a current authenticated session
     public func isAuthenticated() -> Bool {
-        return AEClient.authData != nil
+        return APService.authData != nil
     }
 
     /// Initiates a transaction with a specific transaction input
@@ -55,8 +55,8 @@ public class AEClient {
     /// - Parameters:
     ///    - transaction: The transaction object to process
     public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> ClientResult<InitiateResult> {
-        transaction.token = AEClient.authData?.accessToken
-        let result = await useCases.initiate.execute(with: transaction, authenticatedWith: AEClient.authData!)
+        transaction.setToken(APService.authData!.accessToken)
+        let result = await useCases.initiate.execute(with: transaction, authenticatedWith: APService.authData!)
 
         return await withCheckedContinuation { continuation in
             webViewContinuation = continuation
@@ -118,7 +118,7 @@ public class AEClient {
     /// - Returns: AuthoriseResult
     public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> AuthoriseResult {
         let authDto = AuthoriseDto(transactionId: transactionId, amount: amount, cvv: cvv)
-        return await useCases.authorise.execute(with: authDto, authenticateWith: AEClient.authData!)
+        return await useCases.authorise.execute(with: authDto, authenticateWith: APService.authData!)
     }
 
     /// Reverse authorisation of a transaction.
@@ -127,7 +127,7 @@ public class AEClient {
     ///     - transactionId: The UUID of the transaction to be reversed
     ///  - Returns: ReverseResult
     public func reverse(transactionId: String) async -> ReverseResult {
-        return await useCases.reverse.execute(transactionId: transactionId, authenticateWith: AEClient.authData!)
+        return await useCases.reverse.execute(transactionId: transactionId, authenticateWith: APService.authData!)
     }
 
     /// Settle the authorised amount to the merchant’s account.
@@ -138,7 +138,7 @@ public class AEClient {
     /// - Returns: SettleResult
     public func settle(transactionId: String, amount: Double) async -> SettleResult {
         let settleDto = SettleDto(transactionId: transactionId, amount: amount)
-        return await useCases.settle.execute(with: settleDto, authenticatedWith: AEClient.authData!)
+        return await useCases.settle.execute(with: settleDto, authenticatedWith: APService.authData!)
     }
 
     /// Refund a settled transaction.
@@ -149,13 +149,13 @@ public class AEClient {
     /// - Returns: RefundResult
     public func refund(transactionId: String, amount: Double) async -> RefundResult {
         let refundDto = RefundDto(transactionId: transactionId, amount: amount)
-        return await useCases.refund.execute(with: refundDto, authenticatedWith: AEClient.authData!)
+        return await useCases.refund.execute(with: refundDto, authenticatedWith: APService.authData!)
     }
 }
 
 // MARK: Adumo3DSecureDelegate
 
-extension AEClient: Adumo3DSecureDelegate {
+extension APService: Adumo3DSecureDelegate {
 
     func didDismissWebView(isCancel: Bool, transactionIndex: String?, pares: String?, cvvRequired: Bool) {
         if !isCancel {
@@ -171,7 +171,7 @@ extension AEClient: Adumo3DSecureDelegate {
                 }
 
                 let result = await useCases.verify.execute(with: .init(md: md, payload: payload),
-                                                           authenticatedWith: AEClient.authData!)
+                                                           authenticatedWith: APService.authData!)
 
                 DispatchQueue.main.async {
                     switch result {
@@ -189,7 +189,7 @@ extension AEClient: Adumo3DSecureDelegate {
                 }
             }
         } else {
-            AEClient.authData = nil
+            APService.authData = nil
             webViewContinuation?.resume(returning: .cancelled)
         }
     }
@@ -200,22 +200,3 @@ public enum ClientResult<T> {
     case failure(error: Error)
     case cancelled
 }
-
-public struct InitiateResult {
-    public let uidTransactionIndex: String
-    public let PARes: String?
-    public let cvvRequired: Bool
-}
-
-struct InternalError {
-    let message: String
-
-    init(_ message: String) {
-        self.message = message
-    }
-}
-
-extension InternalError: LocalizedError {
-    var errorDescription: String? { return message }
-}
-

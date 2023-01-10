@@ -14,9 +14,9 @@ protocol TransactionRepository {
     func reverse(transactionId: String, authenticateWith authData: AuthData) async -> ReverseResult
 }
 
-enum TransactionInitiateResult {
+enum TransactionInitiateResult: Equatable {
     case success(transaction: TransactionData)
-    case failure(error: Error)
+    case failure(error: NSError)
 }
 
 internal enum BankservResult {
@@ -27,6 +27,12 @@ internal enum BankservResult {
 public enum AuthoriseResult {
     case success(data: AuthoriseData)
     case failure(error: Error)
+}
+
+public struct InitiateResult {
+    public let uidTransactionIndex: String
+    public let PARes: String?
+    public let cvvRequired: Bool
 }
 
 public enum ReverseResult {

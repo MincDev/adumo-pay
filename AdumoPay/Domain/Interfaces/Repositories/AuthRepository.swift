@@ -17,7 +17,7 @@ protocol AuthRepository {
     func getToken(for clientId: String, using secret: String) async -> AuthenticationResult
 }
 
-enum AuthenticationResult {
+enum AuthenticationResult: Equatable {
     case success(data: AuthData)
-    case failure(error: Error)
+    case failure(error: NSError)
 }

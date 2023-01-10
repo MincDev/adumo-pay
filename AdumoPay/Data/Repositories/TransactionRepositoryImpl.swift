@@ -25,7 +25,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
             let result = try await network.execute(TransactionData.self, using: url)
             return .success(transaction: result)
         } catch {
-            return .failure(error: error)
+            return .failure(error: error as NSError)
         }
     }
 
