@@ -9,13 +9,13 @@ import Foundation
 import Factory
 
 protocol ReverseTransactionUseCase {
-    func execute(transactionId: String, authenticateWith authData: AuthData) async -> ReverseResult
+    func execute(transactionId: String, authenticateWith authData: AuthData) async throws -> ReverseData
 }
 
 final class ReverseTransactionUseCaseImpl: ReverseTransactionUseCase {
     @LazyInjected(Container.transRepository) private var transRepo
 
-    func execute(transactionId: String, authenticateWith authData: AuthData) async -> ReverseResult {
-        await transRepo.reverse(transactionId: transactionId, authenticateWith: authData)
+    func execute(transactionId: String, authenticateWith authData: AuthData) async throws -> ReverseData {
+        try await transRepo.reverse(transactionId: transactionId, authenticateWith: authData)
     }
 }

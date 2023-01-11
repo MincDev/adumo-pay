@@ -9,18 +9,30 @@ import Foundation
 import UIKit
 
 public protocol APServiceProtocol {
-    func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> ClientResult<Any?>
+    func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> APResult<Any?>
     func isAuthenticated() -> Bool
     func destroy()
-    func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> ClientResult<InitiateResult>
-    func authorise(transactionId: String, amount: Double, cvv: Int?) async -> AuthoriseResult
-    func reverse(transactionId: String) async -> ReverseResult
-    func settle(transactionId: String, amount: Double) async -> SettleResult
-    func refund(transactionId: String, amount: Double) async -> RefundResult
+    func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> APResultCancellable<InitiateData>
+    func authorise(transactionId: String, amount: Double, cvv: Int?) async -> APResult<AuthoriseData>
+    func reverse(transactionId: String) async -> APResult<ReverseData>
+    func settle(transactionId: String, amount: Double) async -> APResult<SettleData>
+    func refund(transactionId: String, amount: Double) async -> APResult<RefundData>
+}
+
+public enum APResult<T> {
+    case success(_ data: T?)
+    case failure(error: Error)
+}
+
+public enum APResultCancellable<T> {
+    case success(_ data: T?)
+    case failure(error: Error)
+    case cancelled
 }
 
 public enum APError: Error, Equatable {
     case apiError(_ error: NSError?)
+    case decodeError(_ error: NSError?)
     case unknown
 }
 

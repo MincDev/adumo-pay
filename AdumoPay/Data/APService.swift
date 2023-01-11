@@ -14,7 +14,7 @@ public class APService: APServiceProtocol {
     public static let shared = APService()
     public var delegate: AEClientDelegate?
     private static var authData: AuthData?
-    private var webViewContinuation: CheckedContinuation<ClientResult<InitiateResult>, Never>?
+    private var webViewContinuation: CheckedContinuation<APResultCancellable<InitiateData>, Never>?
 
     // Dependencies
     @LazyInjected(Container.useCases) private var useCases
@@ -28,14 +28,12 @@ public class APService: APServiceProtocol {
     /// - Parameters:
     ///    - clientId: The client ID obtained from Adumo
     ///    - secret: The client secret obtained from Adumo
-    public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> ClientResult<Any?> {
-        let result = await useCases.authenticate.execute(for: clientId, using: secret)
-
-        switch result as AuthenticationResult {
-        case .success(let data):
+    public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> APResult<Any?> {
+        do {
+            let data = try await useCases.authenticate.execute(for: clientId, using: secret)
             APService.authData = data
             return .success(nil)
-        case .failure(let error):
+        } catch {
             return .failure(error: error)
         }
     }
@@ -54,43 +52,43 @@ public class APService: APServiceProtocol {
     ///
     /// - Parameters:
     ///    - transaction: The transaction object to process
-    public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> ClientResult<InitiateResult> {
+    public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> APResultCancellable<InitiateData> {
         transaction.setToken(APService.authData!.accessToken)
-        let result = await useCases.initiate.execute(with: transaction, authenticatedWith: APService.authData!)
+        do {
+            let data = try await useCases.initiate.execute(with: transaction, authenticatedWith: APService.authData!)
 
-        return await withCheckedContinuation { continuation in
-            webViewContinuation = continuation
+            return await withCheckedContinuation { continuation in
+                webViewContinuation = continuation
 
-            Task { @MainActor in
-                switch result {
-                case .success(let data):
+                Task {
                     if data.threeDSecureAuthRequired ?? false {
                         guard let payload = data.acsPayload, let md = data.acsMD else {
                             webViewContinuation?.resume(returning: .failure(error: InternalError("Required information not obtained from payment gateway.")))
                             return
                         }
 
-                        // 3DSecure is required. Initialise the WebView for BankServ
-                        let viewModel = Web3DSecureViewModel(viewController: rootViewController,
-                                                             acsBody: AcsBody(TermUrl: transaction.authCallbackUrl,
-                                                                              PaReq: payload,
-                                                                              MD: md),
-                                                             acsUrl: data.acsUrl!,
-                                                             cvvRequired: data.cvvRequired ?? false)
+                        await MainActor.run {
+                            // 3DSecure is required. Initialise the WebView for BankServ
+                            let viewModel = Web3DSecureViewModel(viewController: rootViewController,
+                                                                 acsBody: AcsBody(TermUrl: transaction.authCallbackUrl,
+                                                                                  PaReq: payload,
+                                                                                  MD: md),
+                                                                 acsUrl: data.acsUrl!,
+                                                                 cvvRequired: data.cvvRequired ?? false)
+                            viewModel.delegate = self
 
-                        viewModel.delegate = self
+                            let webView = Web3DSecureView(
+                                viewModel: viewModel,
+                                config: Web3DSecureConfig()
+                            )
+                            
+                            let adumo3DSecure = UIHostingController(rootView: webView)
+                            let nav = UINavigationController(rootViewController: adumo3DSecure)
+                            nav.modalPresentationStyle = .pageSheet
 
-                        let webView = Web3DSecureView(
-                            viewModel: viewModel,
-                            config: Web3DSecureConfig()
-                        )
-                        let adumo3DSecure = UIHostingController(rootView: webView)
-                        let nav = UINavigationController(rootViewController: adumo3DSecure)
-                        nav.modalPresentationStyle = .pageSheet
-
-                        // Present View "Modally"
-                        rootViewController.present(nav, animated: true, completion: nil)
-
+                            // Present View "Modally"
+                            rootViewController.present(nav, animated: true, completion: nil)
+                        }
                     } else {
                         // Can authorise
                         guard let transactionId = data.transactionId else {
@@ -102,10 +100,10 @@ public class APService: APServiceProtocol {
                                                                               PARes: data.acsPayload,
                                                                               cvvRequired: data.cvvRequired ?? false)))
                     }
-                case .failure(let error):
-                    webViewContinuation?.resume(returning: .failure(error: error))
                 }
             }
+        } catch {
+            return .failure(error: error)
         }
     }
 
@@ -116,9 +114,14 @@ public class APService: APServiceProtocol {
     ///    - amount: The amount to be authorised
     ///    - cvv: The card cvv number if required. This is indicated from the initiate response
     /// - Returns: AuthoriseResult
-    public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> AuthoriseResult {
+    public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> APResult<AuthoriseData> {
         let authDto = AuthoriseDto(transactionId: transactionId, amount: amount, cvv: cvv)
-        return await useCases.authorise.execute(with: authDto, authenticateWith: APService.authData!)
+        do {
+            let data = try await useCases.authorise.execute(with: authDto, authenticateWith: APService.authData!)
+            return .success(data)
+        } catch {
+            return .failure(error: error)
+        }
     }
 
     /// Reverse authorisation of a transaction.
@@ -126,8 +129,13 @@ public class APService: APServiceProtocol {
     ///  - Parameters:
     ///     - transactionId: The UUID of the transaction to be reversed
     ///  - Returns: ReverseResult
-    public func reverse(transactionId: String) async -> ReverseResult {
-        return await useCases.reverse.execute(transactionId: transactionId, authenticateWith: APService.authData!)
+    public func reverse(transactionId: String) async -> APResult<ReverseData> {
+        do {
+            let data = try await useCases.reverse.execute(transactionId: transactionId, authenticateWith: APService.authData!)
+            return .success(data)
+        } catch {
+            return .failure(error: error)
+        }
     }
 
     /// Settle the authorised amount to the merchant’s account.
@@ -136,9 +144,14 @@ public class APService: APServiceProtocol {
     ///    - transactionId: The UUID of the transaction to be settled
     ///    - amount: The amount to be settled
     /// - Returns: SettleResult
-    public func settle(transactionId: String, amount: Double) async -> SettleResult {
+    public func settle(transactionId: String, amount: Double) async -> APResult<SettleData> {
         let settleDto = SettleDto(transactionId: transactionId, amount: amount)
-        return await useCases.settle.execute(with: settleDto, authenticatedWith: APService.authData!)
+        do {
+            let data = try await useCases.settle.execute(with: settleDto, authenticatedWith: APService.authData!)
+            return .success(data)
+        } catch {
+            return .failure(error: error)
+        }
     }
 
     /// Refund a settled transaction.
@@ -147,9 +160,14 @@ public class APService: APServiceProtocol {
     ///    - transactionId: The UUID of the transaction to be settled
     ///    - amount: The amount to be settled
     /// - Returns: RefundResult
-    public func refund(transactionId: String, amount: Double) async -> RefundResult {
+    public func refund(transactionId: String, amount: Double) async -> APResult<RefundData> {
         let refundDto = RefundDto(transactionId: transactionId, amount: amount)
-        return await useCases.refund.execute(with: refundDto, authenticatedWith: APService.authData!)
+        do {
+            let data = try await useCases.refund.execute(with: refundDto, authenticatedWith: APService.authData!)
+            return .success(data)
+        } catch {
+            return .failure(error: error)
+        }
     }
 }
 
@@ -159,7 +177,6 @@ extension APService: Adumo3DSecureDelegate {
 
     func didDismissWebView(isCancel: Bool, transactionIndex: String?, pares: String?, cvvRequired: Bool) {
         if !isCancel {
-            Task {
                 guard let md = transactionIndex else {
                     webViewContinuation?.resume(returning: .failure(error: InternalError("Transaction was not successfully initiated. Missing transaction index.")))
                     return
@@ -170,33 +187,27 @@ extension APService: Adumo3DSecureDelegate {
                     return
                 }
 
-                let result = await useCases.verify.execute(with: .init(md: md, payload: payload),
-                                                           authenticatedWith: APService.authData!)
+                Task {
+                    do {
+                        let data = try await useCases.verify.execute(with: .init(md: md, payload: payload),
+                                                                     authenticatedWith: APService.authData!)
 
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let data):
-                        if Int(data.errorCode) == 200 {
-                            self.webViewContinuation?.resume(returning: .success(.init(uidTransactionIndex: md,
-                                                                                       PARes: payload,
-                                                                                       cvvRequired: cvvRequired)))
-                        } else {
-                            self.webViewContinuation?.resume(returning: .failure(error: InternalError(data.errorMsg)))
+                        await MainActor.run {
+                            if Int(data.errorCode) == 200 {
+                                self.webViewContinuation?.resume(returning: .success(.init(uidTransactionIndex: md,
+                                                                                           PARes: payload,
+                                                                                           cvvRequired: cvvRequired)))
+                            } else {
+                                self.webViewContinuation?.resume(returning: .failure(error: InternalError(data.errorMsg)))
+                            }
                         }
-                    case .failure(let error):
+                    } catch {
                         self.webViewContinuation?.resume(returning: .failure(error: error))
                     }
                 }
-            }
         } else {
             APService.authData = nil
             webViewContinuation?.resume(returning: .cancelled)
         }
     }
-}
-
-public enum ClientResult<T> {
-    case success(_ data: T?)
-    case failure(error: Error)
-    case cancelled
 }

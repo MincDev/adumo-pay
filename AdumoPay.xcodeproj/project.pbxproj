@@ -35,7 +35,7 @@
 		8449A3E5296CA2B9003ECAAD /* AuthenticateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */; };
 		8449A3E7296CA49B003ECAAD /* Factory+UseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E6296CA49B003ECAAD /* Factory+UseCases.swift */; };
 		8449A3E9296CA572003ECAAD /* InititiateTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */; };
-		8449A3EB296CA67E003ECAAD /* AuthenticateTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EA296CA67E003ECAAD /* AuthenticateTransactionUseCase.swift */; };
+		8449A3EB296CA67E003ECAAD /* VerifyTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */; };
 		8449A3ED296CA767003ECAAD /* AuthoriseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */; };
 		8449A3EF296CA802003ECAAD /* ReverseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */; };
 		8449A3F1296CAA6F003ECAAD /* SettleTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */; };
@@ -55,6 +55,7 @@
 		8449A424296DFE7C003ECAAD /* NSError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A41E296DFE7C003ECAAD /* NSError+Extension.swift */; };
 		8449A425296DFE7C003ECAAD /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A41F296DFE7C003ECAAD /* ApiEndpoint.swift */; };
 		8449A426296DFE7C003ECAAD /* Factory+Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A420296DFE7C003ECAAD /* Factory+Clients.swift */; };
+		8449A428296F23FC003ECAAD /* InitiateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A427296F23FC003ECAAD /* InitiateData.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -103,7 +104,7 @@
 		8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateUseCase.swift; sourceTree = "<group>"; };
 		8449A3E6296CA49B003ECAAD /* Factory+UseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+UseCases.swift"; sourceTree = "<group>"; };
 		8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InititiateTransactionUseCase.swift; sourceTree = "<group>"; };
-		8449A3EA296CA67E003ECAAD /* AuthenticateTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTransactionUseCase.swift; sourceTree = "<group>"; };
 		8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseTransactionUseCase.swift; sourceTree = "<group>"; };
 		8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseTransactionUseCase.swift; sourceTree = "<group>"; };
 		8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleTransactionUseCase.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		8449A41E296DFE7C003ECAAD /* NSError+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Extension.swift"; sourceTree = "<group>"; };
 		8449A41F296DFE7C003ECAAD /* ApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		8449A420296DFE7C003ECAAD /* Factory+Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Factory+Clients.swift"; sourceTree = "<group>"; };
+		8449A427296F23FC003ECAAD /* InitiateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateData.swift; sourceTree = "<group>"; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -315,7 +317,7 @@
 			children = (
 				8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */,
 				8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */,
-				8449A3EA296CA67E003ECAAD /* AuthenticateTransactionUseCase.swift */,
+				8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */,
 				8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */,
 				8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */,
 				8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */,
@@ -364,6 +366,7 @@
 				8449A3E1296A0CF3003ECAAD /* ReverseData.swift */,
 				8449A3F4296CAB3F003ECAAD /* SettleData.swift */,
 				8449A3FA296CAC84003ECAAD /* RefundData.swift */,
+				8449A427296F23FC003ECAAD /* InitiateData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				8449A425296DFE7C003ECAAD /* ApiEndpoint.swift in Sources */,
 				8449A3D3294BC600003ECAAD /* WebView.swift in Sources */,
 				8449A3E0296A0918003ECAAD /* ReverseDto.swift in Sources */,
+				8449A428296F23FC003ECAAD /* InitiateData.swift in Sources */,
 				8449A3E2296A0CF3003ECAAD /* ReverseData.swift in Sources */,
 				8449A3EF296CA802003ECAAD /* ReverseTransactionUseCase.swift in Sources */,
 				8449A426296DFE7C003ECAAD /* Factory+Clients.swift in Sources */,
@@ -566,7 +570,7 @@
 				84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */,
 				8443E8EC2938D6F800371C15 /* Adumo3DSecureDelegate.swift in Sources */,
 				8449A3ED296CA767003ECAAD /* AuthoriseTransactionUseCase.swift in Sources */,
-				8449A3EB296CA67E003ECAAD /* AuthenticateTransactionUseCase.swift in Sources */,
+				8449A3EB296CA67E003ECAAD /* VerifyTransactionUseCase.swift in Sources */,
 				8449A3D1294BC12B003ECAAD /* Web3DSecureView.swift in Sources */,
 				8449A3E9296CA572003ECAAD /* InititiateTransactionUseCase.swift in Sources */,
 				8449A3F5296CAB3F003ECAAD /* SettleData.swift in Sources */,

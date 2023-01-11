@@ -12,7 +12,7 @@ extension Container {
     // Should only be accessible through Facade
     fileprivate static let authenticateUseCase = Factory<AuthenticateUseCase> { AuthenticateUseCaseImpl() }
     fileprivate static let initiateTransactionUseCase = Factory<InitiateTransactionUseCase> { InitiateTransactionUseCaseImpl() }
-    fileprivate static let authenticateTransactionUseCase = Factory<AuthenticateTransactionUseCase> { AuthenticateTransactionUseCaseImpl() }
+    fileprivate static let verifyTransactionUseCase = Factory<VerifyTransactionUseCase> { VerifyTransactionUseCaseImpl() }
     fileprivate static let authoriseTransactionUseCase = Factory<AuthoriseTransactionUseCase> { AuthoriseTransactionUseCaseImpl() }
     fileprivate static let reverseTransactionUseCase = Factory<ReverseTransactionUseCase> { ReverseTransactionUseCaseImpl() }
     fileprivate static let settleTransactionUseCase = Factory<SettleTransactionUseCase> { SettleTransactionUseCaseImpl() }
@@ -24,7 +24,7 @@ extension Container {
 protocol AdumoPayUseCases {
     var authenticate: AuthenticateUseCase { get }
     var initiate: InitiateTransactionUseCase { get }
-    var verify: AuthenticateTransactionUseCase { get }
+    var verify: VerifyTransactionUseCase { get }
     var authorise: AuthoriseTransactionUseCase { get }
     var reverse: ReverseTransactionUseCase { get }
     var settle: SettleTransactionUseCase { get }
@@ -34,7 +34,7 @@ protocol AdumoPayUseCases {
 struct AdumoPayUseCasesFacade: AdumoPayUseCases {
     @Injected(Container.authenticateUseCase) var authenticate: AuthenticateUseCase
     @Injected(Container.initiateTransactionUseCase) var initiate: InitiateTransactionUseCase
-    @Injected(Container.authenticateTransactionUseCase) var verify: AuthenticateTransactionUseCase
+    @Injected(Container.verifyTransactionUseCase) var verify: VerifyTransactionUseCase
     @Injected(Container.authoriseTransactionUseCase) var authorise: AuthoriseTransactionUseCase
     @Injected(Container.reverseTransactionUseCase) var reverse: ReverseTransactionUseCase
     @Injected(Container.settleTransactionUseCase) var settle: SettleTransactionUseCase

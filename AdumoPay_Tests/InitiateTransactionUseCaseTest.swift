@@ -22,28 +22,35 @@ final class InitiateTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesServiceWithSuccessfulResponse() async {
-        let mockResult: TransactionInitiateResult = .success(transaction: mockTransactionData())
+        let mockResult = mockTransactionData()
 
         givenSwift(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).will { _, _ in
             return mockResult
         }
 
-        let result = await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
-
+        do {
+            let result = try await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
+            XCTAssertEqual(mockResult, result)
+        } catch {
+            XCTFail()
+        }
         verify(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).wasCalled()
-        XCTAssertEqual(result, .success(transaction: mockTransactionData()))
     }
 
     func testUseCaseInvokesServiceWithFailedResponse() async {
-        let mockError: TransactionInitiateResult = .failure(error: MockError() as NSError)
+        let mockError = MockError()
 
         givenSwift(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).will { _, _ in
-            return mockError
+            throw mockError
         }
 
-        let result = await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
+        do {
+            let _ = try await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
+            XCTFail()
+        } catch {
+            XCTAssertEqual(mockError, MockError())
+        }
 
         verify(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).wasCalled()
-        XCTAssertEqual(result, mockError)
     }
 }

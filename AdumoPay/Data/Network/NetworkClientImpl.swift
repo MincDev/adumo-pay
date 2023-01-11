@@ -43,13 +43,18 @@ struct NetworkClientImpl: NetworkClient {
                     debugPrint("Response Body: ******************* \n\n \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "No Response Body")")
                 }
 
-                if let safeData = data {
-                    do {
-                        let objData = try JSONDecoder().decode(type.self, from: safeData)
-                        continuation.resume(returning: objData)
-                    } catch {
-                        continuation.resume(throwing: error)
+                switch (response as? HTTPURLResponse)?.statusCode {
+                case 200:
+                    if let safeData = data {
+                        do {
+                            let objData = try JSONDecoder().decode(type.self, from: safeData)
+                            continuation.resume(returning: objData)
+                        } catch {
+                            continuation.resume(throwing: APError.decodeError(error as NSError))
+                        }
                     }
+                default:
+                    continuation.resume(throwing: APError.apiError(.create(response)))
                 }
             }.resume()
         }

@@ -13,11 +13,6 @@ protocol AuthRepository {
     /// - Parameters:
     ///    - clientId: The client id to be used in authentication
     ///    - secret: The client secret to be used in authentication
-    /// - Returns: AuthenticationResult
-    func getToken(for clientId: String, using secret: String) async -> AuthenticationResult
-}
-
-enum AuthenticationResult: Equatable {
-    case success(data: AuthData)
-    case failure(error: NSError)
+    /// - Returns: AuthData
+    func getToken(for clientId: String, using secret: String) async throws -> AuthData
 }

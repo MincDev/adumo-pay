@@ -22,34 +22,42 @@ final class AuthenticateUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesServiceWithSuccessfulResponse() async {
-        let mockResult: AuthenticationResult = .success(data: .init(
+        let mockResult: AuthData = .init(
             accessToken: "mock-access-token",
             tokenType: "mock-token-type",
             expiry: 0,
             scope: "mock-scope",
             jti: "mock-jti"
-        ))
+        )
 
         givenSwift(await mockAuthRepo.getToken(for: any(), using: any())).will { _, _ in
             return mockResult
         }
 
-        let result = await useCase.execute(for: "mock-merchant-id", using: "mock-secret")
+        do {
+            let result = try await useCase.execute(for: "mock-merchant-id", using: "mock-secret")
+            XCTAssertEqual(result, mockResult)
+        } catch {
+            XCTFail()
+        }
 
         verify(await mockAuthRepo.getToken(for: any(), using: any())).wasCalled()
-        XCTAssertEqual(result, mockResult)
     }
 
     func testUseCaseInvokesServiceWithFailedResponse() async {
-        let mockError: AuthenticationResult = .failure(error: MockError() as NSError)
+        let mockError = MockError()
 
         givenSwift(await mockAuthRepo.getToken(for: any(), using: any())).will { _, _ in
-            return mockError
+            throw mockError
         }
 
-        let result = await useCase.execute(for: "mock-merchant-id", using: "mock-secret")
+        do {
+            let _ = try await useCase.execute(for: "mock-merchant-id", using: "mock-secret")
+            XCTFail()
+        } catch {
+            XCTAssertEqual(mockError, error as? MockError)
+        }
 
         verify(await mockAuthRepo.getToken(for: any(), using: any())).wasCalled()
-        XCTAssertEqual(result, mockError)
     }
 }
