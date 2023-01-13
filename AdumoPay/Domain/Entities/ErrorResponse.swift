@@ -7,10 +7,14 @@
 
 import Foundation
 
-public struct ErrorResponse: Entity {
+public struct ErrorResponse: Error, Entity {
     /// Error code
     let errorCode: String
 
     /// Error message
     let message: String
+}
+
+extension ErrorResponse: LocalizedError {
+    public var errorDescription: String? { return message }
 }

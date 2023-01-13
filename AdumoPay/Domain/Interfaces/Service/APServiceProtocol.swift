@@ -30,12 +30,6 @@ public enum APResultCancellable<T> {
     case cancelled
 }
 
-public enum APError: Error, Equatable {
-    case apiError(_ error: NSError?)
-    case decodeError(_ error: NSError?)
-    case unknown
-}
-
 struct InternalError {
     let message: String
 

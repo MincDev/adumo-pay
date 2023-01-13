@@ -9,13 +9,13 @@ import Foundation
 import Factory
 
 protocol SettleTransactionUseCase {
-    func execute(with transaction: SettleDto, authenticatedWith authData: AuthData) async throws -> SettleData
+    func execute(with transaction: SettleDto) async throws -> SettleData
 }
 
 final class SettleTransactionUseCaseImpl: SettleTransactionUseCase {
     @LazyInjected(Container.transRepository) private var transRepo
 
-    func execute(with transaction: SettleDto, authenticatedWith authData: AuthData) async throws -> SettleData {
-        fatalError("Settle Use Case Not Implemented Yet.")
+    func execute(with transaction: SettleDto) async throws -> SettleData {
+        try await transRepo.settle(transactionId: transaction.transactionId, for: transaction.amount)
     }
 }

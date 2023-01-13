@@ -12,7 +12,7 @@ struct TransactionData: Entity {
     let transactionId: String?
 
     /// 3DSecure required for transaction or not
-    let threeDSecureAuthRequired: Bool?
+    let threeDSecureAuthRequired: Bool
 
     /// CVV required for transaction or not
     let cvvRequired: Bool?

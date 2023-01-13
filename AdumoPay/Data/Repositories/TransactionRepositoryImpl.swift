@@ -12,48 +12,69 @@ final class TransactionRepositoryImpl: TransactionRepository {
 
     @Injected(Container.networkClient) private var network
 
-    func initiate(with transaction: Transaction, authenticatedWith authData: AuthData) async throws -> TransactionData {
+    func initiate(with transaction: Transaction) async throws -> TransactionData {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.initiateTransaction.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(authData.tokenType.capitalized) \(authData.accessToken)"
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
         ]
         network.httpMethod = .post
         network.httpBody = transaction
         return try await network.execute(TransactionData.self, using: url)
     }
 
-    func verify(with body: BankservDto, authenticatedWith authData: AuthData) async throws -> BankservData {
+    func verify(with body: BankservDto) async throws -> BankservData {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.authenticate3ds.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(authData.tokenType.capitalized) \(authData.accessToken)"
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
         ]
         network.httpMethod = .post
         network.httpBody = body
         return try await network.execute(BankservData.self, using: url)
     }
 
-    func authorise(with transaction: AuthoriseDto, authenticateWith authData: AuthData) async throws -> AuthoriseData {
+    func authorise(with transaction: AuthoriseDto) async throws -> AuthoriseData {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.authorise.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(authData.tokenType.capitalized) \(authData.accessToken)"
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
         ]
         network.httpMethod = .post
         network.httpBody = transaction
-        network.debugMode = true
         return try await network.execute(AuthoriseData.self, using: url)
     }
 
-    func reverse(transactionId: String, authenticateWith authData: AuthData) async throws -> ReverseData {
+    func reverse(transactionId: String) async throws -> ReverseData {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.reverse.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(authData.tokenType.capitalized) \(authData.accessToken)"
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
         ]
         network.httpMethod = .post
         network.httpBody = ReverseDto(transactionId: transactionId)
         return try await network.execute(ReverseData.self, using: url)
+    }
+
+    func settle(transactionId: String, for amount: Double) async throws -> SettleData {
+        let url = Environment.url.appendingPathComponent(ApiEndpoint.settle.path).absoluteString
+        network.headers = [
+            "Content-Type": "application/json",
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+        ]
+        network.httpMethod = .post
+        network.httpBody = SettleDto(transactionId: transactionId, amount: amount)
+        return try await network.execute(SettleData.self, using: url)
+    }
+
+    func refund(transactionId: String, for amount: Double) async throws -> RefundData {
+        let url = Environment.url.appendingPathComponent(ApiEndpoint.refund.path).absoluteString
+        network.headers = [
+            "Content-Type": "application/json",
+            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+        ]
+        network.httpMethod = .post
+        network.httpBody = RefundDto(transactionId: transactionId, amount: amount)
+        return try await network.execute(RefundData.self, using: url)
     }
 }

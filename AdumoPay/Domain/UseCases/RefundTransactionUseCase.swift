@@ -9,13 +9,13 @@ import Foundation
 import Factory
 
 protocol RefundTransactionUseCase {
-    func execute(with transaction: RefundDto, authenticatedWith authData: AuthData) async -> RefundData
+    func execute(with transaction: RefundDto) async throws -> RefundData
 }
 
 final class RefundTransactionUseCaseImpl: RefundTransactionUseCase {
     @LazyInjected(Container.transRepository) private var transRepo
 
-    func execute(with transaction: RefundDto, authenticatedWith authData: AuthData) async -> RefundData {
-        fatalError("Refund Use Case Not Implemented Yet.")
+    func execute(with transaction: RefundDto) async throws -> RefundData {
+        try await transRepo.refund(transactionId: transaction.transactionId, for: transaction.amount)
     }
 }

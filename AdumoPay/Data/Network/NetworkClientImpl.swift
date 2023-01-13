@@ -35,26 +35,38 @@ struct NetworkClientImpl: NetworkClient {
         return try await withCheckedThrowingContinuation { continuation in
             URLSession.shared.dataTask(with: request) { data, response, err in
                 if err != nil {
-                    continuation.resume(throwing: NSError.create(response))
+                    continuation.resume(throwing: InternalError(err?.localizedDescription ?? "Unknown Network Error") as NSError)
                     return
                 }
 
+                let httpStatusCode = (response as? HTTPURLResponse)?.statusCode ?? 500
+                let responseBody = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "Internal Server Error"
+
                 if debugMode {
-                    debugPrint("Response Body: ******************* \n\n \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "No Response Body")")
+                    debugPrint("Response Body: ******************* \n\n\(responseBody)")
                 }
 
-                switch (response as? HTTPURLResponse)?.statusCode {
+                switch httpStatusCode {
                 case 200:
                     if let safeData = data {
                         do {
                             let objData = try JSONDecoder().decode(type.self, from: safeData)
                             continuation.resume(returning: objData)
                         } catch {
-                            continuation.resume(throwing: APError.decodeError(error as NSError))
+                            continuation.resume(throwing: InternalError(error.localizedDescription) as NSError)
                         }
                     }
                 default:
-                    continuation.resume(throwing: APError.apiError(.create(response)))
+                    if let safeData = data {
+                        do {
+                            let objData = try JSONDecoder().decode(ErrorResponse.self, from: safeData)
+                            continuation.resume(throwing: objData)
+                        } catch {
+                            continuation.resume(throwing: InternalError(error.localizedDescription) as NSError)
+                        }
+                    } else {
+                        continuation.resume(throwing: InternalError("Call threw a HTTP \(httpStatusCode) with response body: \(responseBody)") as NSError)
+                    }
                 }
             }.resume()
         }

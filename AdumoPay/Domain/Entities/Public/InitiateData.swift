@@ -8,7 +8,9 @@
 import Foundation
 
 public struct InitiateData {
+    /// UID of transaction
     public let uidTransactionIndex: String
-    public let PARes: String?
+    
+    /// CVV required for transaction or not
     public let cvvRequired: Bool
 }

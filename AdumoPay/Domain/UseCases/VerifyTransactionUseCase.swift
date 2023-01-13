@@ -9,13 +9,13 @@ import Foundation
 import Factory
 
 protocol VerifyTransactionUseCase {
-    func execute(with body: BankservDto, authenticatedWith authData: AuthData) async throws -> BankservData
+    func execute(with body: BankservDto) async throws -> BankservData
 }
 
 final class VerifyTransactionUseCaseImpl: VerifyTransactionUseCase {
     @LazyInjected(Container.transRepository) private var transRepo
 
-    func execute(with body: BankservDto, authenticatedWith authData: AuthData) async throws -> BankservData {
-        try await transRepo.verify(with: body, authenticatedWith: authData)
+    func execute(with body: BankservDto) async throws -> BankservData {
+        try await transRepo.verify(with: body)
     }
 }
