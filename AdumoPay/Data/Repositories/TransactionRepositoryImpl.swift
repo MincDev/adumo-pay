@@ -16,7 +16,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.initiateTransaction.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = transaction
@@ -27,7 +27,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.authenticate3ds.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = body
@@ -38,7 +38,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.authorise.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = transaction
@@ -49,7 +49,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.reverse.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = ReverseDto(transactionId: transactionId)
@@ -60,7 +60,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.settle.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = SettleDto(transactionId: transactionId, amount: amount)
@@ -71,10 +71,18 @@ final class TransactionRepositoryImpl: TransactionRepository {
         let url = Environment.url.appendingPathComponent(ApiEndpoint.refund.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
-            "Authorization": "\(APService.authData!.tokenType.capitalized) \(APService.authData!.accessToken)"
+            "Authorization": try getAuthorisation()
         ]
         network.httpMethod = .post
         network.httpBody = RefundDto(transactionId: transactionId, amount: amount)
         return try await network.execute(RefundData.self, using: url)
+    }
+
+    private func getAuthorisation() throws -> String {
+        guard let authData = APService.authData else {
+            throw InternalError("Not Authenticated")
+        }
+
+        return "\(authData.tokenType.capitalized) \(authData.accessToken)"
     }
 }

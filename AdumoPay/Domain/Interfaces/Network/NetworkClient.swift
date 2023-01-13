@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NetworkClient {
+    typealias HTTPBody = (any Encodable)
 
     /// Headers to be used for the request
     var headers: HTTPHeaders? { get set }
@@ -19,7 +20,7 @@ protocol NetworkClient {
     var httpMethod: HTTPMethod { get set }
 
     /// The body to be posted
-    var httpBody: (any Encodable)? { get set }
+    var httpBody: HTTPBody? { get set }
 
     /// Executes a network data task and returns an expected Entity Object
     ///

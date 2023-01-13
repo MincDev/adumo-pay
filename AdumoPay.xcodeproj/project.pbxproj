@@ -56,6 +56,13 @@
 		8449A426296DFE7C003ECAAD /* Factory+Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A420296DFE7C003ECAAD /* Factory+Clients.swift */; };
 		8449A428296F23FC003ECAAD /* InitiateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A427296F23FC003ECAAD /* InitiateData.swift */; };
 		8449A42B29700040003ECAAD /* BankServResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42A29700040003ECAAD /* BankServResponseDto.swift */; };
+		8449A42E2971C588003ECAAD /* VerifyTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */; };
+		8449A4302971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */; };
+		8449A4322971C961003ECAAD /* ReverseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */; };
+		8449A4342971CA71003ECAAD /* SettleTransactionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */; };
+		8449A4362971CB4B003ECAAD /* RefundTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */; };
+		8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */; };
+		8449A43C2971D6E9003ECAAD /* APServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A43B2971D6E9003ECAAD /* APServiceTest.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -124,6 +131,13 @@
 		8449A420296DFE7C003ECAAD /* Factory+Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Factory+Clients.swift"; sourceTree = "<group>"; };
 		8449A427296F23FC003ECAAD /* InitiateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateData.swift; sourceTree = "<group>"; };
 		8449A42A29700040003ECAAD /* BankServResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServResponseDto.swift; sourceTree = "<group>"; };
+		8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseTransactionUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleTransactionUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryTest.swift; sourceTree = "<group>"; };
+		8449A43B2971D6E9003ECAAD /* APServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APServiceTest.swift; path = AdumoPay_Tests/APServiceTest.swift; sourceTree = SOURCE_ROOT; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -332,8 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				8449A414296DDCDD003ECAAD /* TestMocks.swift */,
-				8449A402296D9206003ECAAD /* AuthenticateUseCaseTest.swift */,
-				8449A416296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift */,
+				8449A43B2971D6E9003ECAAD /* APServiceTest.swift */,
+				8449A4382971CE14003ECAAD /* Repositories */,
+				8449A4372971CBCF003ECAAD /* UseCases */,
 			);
 			path = AdumoPay_Tests;
 			sourceTree = "<group>";
@@ -369,6 +384,28 @@
 				8449A427296F23FC003ECAAD /* InitiateData.swift */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		8449A4372971CBCF003ECAAD /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */,
+				8449A402296D9206003ECAAD /* AuthenticateUseCaseTest.swift */,
+				8449A416296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift */,
+				8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */,
+				8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */,
+				8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */,
+				8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		8449A4382971CE14003ECAAD /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		84F4BD4E29491953003921EF /* Extension */ = {
@@ -582,9 +619,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8449A403296D9206003ECAAD /* AuthenticateUseCaseTest.swift in Sources */,
+				8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */,
+				8449A4342971CA71003ECAAD /* SettleTransactionUseCaseTest.swift in Sources */,
 				8449A417296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift in Sources */,
 				8449A415296DDCDD003ECAAD /* TestMocks.swift in Sources */,
+				8449A42E2971C588003ECAAD /* VerifyTransactionUseCase.swift in Sources */,
 				CE127293448B4C0AF508B7A6 /* AdumoPay_Tests-AdumoPayMocks.generated.swift in Sources */,
+				8449A4362971CB4B003ECAAD /* RefundTransactionUseCase.swift in Sources */,
+				8449A43C2971D6E9003ECAAD /* APServiceTest.swift in Sources */,
+				8449A4322971C961003ECAAD /* ReverseTransactionUseCase.swift in Sources */,
+				8449A4302971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

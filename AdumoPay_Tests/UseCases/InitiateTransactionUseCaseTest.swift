@@ -24,33 +24,33 @@ final class InitiateTransactionUseCaseTest: XCTestCase {
     func testUseCaseInvokesServiceWithSuccessfulResponse() async {
         let mockResult = mockTransactionData()
 
-        givenSwift(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).will { _, _ in
+        givenSwift(await mockTransRepo.initiate(with: any())).will { _ in
             return mockResult
         }
 
         do {
-            let result = try await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
+            let result = try await useCase.execute(with: mockTransaction())
             XCTAssertEqual(mockResult, result)
         } catch {
             XCTFail()
         }
-        verify(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).wasCalled()
+        verify(await mockTransRepo.initiate(with: any())).wasCalled()
     }
 
     func testUseCaseInvokesServiceWithFailedResponse() async {
         let mockError = MockError()
 
-        givenSwift(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).will { _, _ in
+        givenSwift(await mockTransRepo.initiate(with: any())).will { _ in
             throw mockError
         }
 
         do {
-            let _ = try await useCase.execute(with: mockTransaction(), authenticatedWith: mockAuthData())
+            let _ = try await useCase.execute(with: mockTransaction())
             XCTFail()
         } catch {
             XCTAssertEqual(mockError, MockError())
         }
 
-        verify(await mockTransRepo.initiate(with: any(), authenticatedWith: any())).wasCalled()
+        verify(await mockTransRepo.initiate(with: any())).wasCalled()
     }
 }

@@ -17,6 +17,7 @@ struct NetworkClientImpl: NetworkClient {
         guard let url = URL(string: urlString) else { throw URLError(.badURL) }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
+        let requestBody = NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body"
 
         if let safeHeaders = headers {
             safeHeaders.forEach { header in
@@ -29,7 +30,7 @@ struct NetworkClientImpl: NetworkClient {
         }
 
         if debugMode {
-            debugPrint("Request Body: ******************* \n\n \(NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body")")
+            debugPrint("Request Body: ******************* \n\n \(requestBody)")
         }
 
         return try await withCheckedThrowingContinuation { continuation in
