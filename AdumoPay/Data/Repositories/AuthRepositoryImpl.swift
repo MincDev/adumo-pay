@@ -12,16 +12,10 @@ final class AuthRepositoryImpl: AuthRepository {
 
     @Injected(Container.networkClient) private var network
 
-    private let url: String = "https://staging-apiv3.adumoonline.com/oauth/token"
-
-    public func getToken(for clientId: String, using secret: String) async -> AuthenticationResult {
+    public func getToken(for clientId: String, using secret: String) async throws -> AuthData {
+        let url = Environment.url.appendingPathComponent(ApiEndpoint.authToken.path).absoluteString
         let urlString = "\(url)?grant_type=client_credentials&client_id=\(clientId)&client_secret=\(secret)"
         network.httpMethod = .post
-        do {
-            let data = try await network.execute(AuthData.self, using: urlString)
-            return .success(data: data)
-        } catch  {
-            return .failure(error: error)
-        }
+        return try await network.execute(AuthData.self, using: urlString)
     }
 }

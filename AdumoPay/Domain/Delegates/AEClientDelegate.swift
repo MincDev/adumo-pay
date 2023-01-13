@@ -8,11 +8,13 @@
 import Foundation
 
 @objc public protocol AEClientDelegate {
-    func onAuthenticated()
+    func onTransactionInitiated(uidTransactionIndex: String, PARes: String?)
+    func onTransactionInitiateFailed(with error: Error)
+    func onTransactionInitiateCancelled()
 
-    func onAuthenticationFailed(with error: Error)
 
-    @objc optional func on3DSecureFinished(with response: [String: String], uidTransactionIndex: String, PARes: String)
+
+    @objc optional func on3DSecureFinished(uidTransactionIndex: String, PARes: String)
 
     @objc optional func on3DSecureFailed(with error: Error)
 

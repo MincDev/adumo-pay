@@ -8,10 +8,11 @@
 import Foundation
 
 protocol AuthRepository {
-    func getToken(for clientId: String, using secret: String) async -> AuthenticationResult
-}
-
-public enum AuthenticationResult {
-    case success(data: AuthData)
-    case failure(error: Error)
+    /// Returns an AuthenticationResult which contains either a success or failure
+    ///
+    /// - Parameters:
+    ///    - clientId: The client id to be used in authentication
+    ///    - secret: The client secret to be used in authentication
+    /// - Returns: AuthData
+    func getToken(for clientId: String, using secret: String) async throws -> AuthData
 }

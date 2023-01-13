@@ -7,34 +7,17 @@
 
 import Foundation
 
-protocol NetworkClient {
-    var headers: HTTPHeaders? { get set }
-    var debugMode: Bool { get set }
-    var httpMethod: HTTPMethod { get set }
-
-    func execute<T: Entity>(_ type: T.Type, using urlString: String) async throws -> T
-}
-
 struct NetworkClientImpl: NetworkClient {
-
-    /// Headers to be used for the request
     var headers: HTTPHeaders?
-
-    /// Whether to pring out debug log information
     var debugMode: Bool = false
-
-    /// The method to use for the data task
     var httpMethod: HTTPMethod = .get
+    var httpBody: (any Encodable)?
 
-    /// Executes a network data task and returns an expected Entity Object
-    ///
-    /// - Parameters:
-    ///     - type: The Entity class that is expected to be returned
-    ///     - urlString: The url string to be used for the data task
     func execute<T: Entity>(_ type: T.Type, using urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else { throw URLError(.badURL) }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
+        let requestBody = NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body"
 
         if let safeHeaders = headers {
             safeHeaders.forEach { header in
@@ -42,26 +25,48 @@ struct NetworkClientImpl: NetworkClient {
             }
         }
 
+        if let body = httpBody {
+            request.httpBody = try JSONEncoder().encode(body)
+        }
+
+        if debugMode {
+            debugPrint("Request Body: ******************* \n\n \(requestBody)")
+        }
+
         return try await withCheckedThrowingContinuation { continuation in
             URLSession.shared.dataTask(with: request) { data, response, err in
                 if err != nil {
-                    guard let error = err else {
-                        fatalError("Expected non-nil result 'error1' in the non-error case")
-                    }
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: InternalError(err?.localizedDescription ?? "Unknown Network Error") as NSError)
                     return
                 }
 
+                let httpStatusCode = (response as? HTTPURLResponse)?.statusCode ?? 500
+                let responseBody = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "Internal Server Error"
+
                 if debugMode {
-                    print("Response Body: ******************* \n\n \(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "No Response Body")")
+                    debugPrint("Response Body: ******************* \n\n\(responseBody)")
                 }
 
-                if let safeData = data {
-                    do {
-                        let objData = try JSONDecoder().decode(type.self, from: safeData)
-                        continuation.resume(returning: objData)
-                    } catch {
-                        continuation.resume(throwing: error)
+                switch httpStatusCode {
+                case 200:
+                    if let safeData = data {
+                        do {
+                            let objData = try JSONDecoder().decode(type.self, from: safeData)
+                            continuation.resume(returning: objData)
+                        } catch {
+                            continuation.resume(throwing: InternalError(error.localizedDescription) as NSError)
+                        }
+                    }
+                default:
+                    if let safeData = data {
+                        do {
+                            let objData = try JSONDecoder().decode(ErrorResponse.self, from: safeData)
+                            continuation.resume(throwing: objData)
+                        } catch {
+                            continuation.resume(throwing: InternalError(error.localizedDescription) as NSError)
+                        }
+                    } else {
+                        continuation.resume(throwing: InternalError("Call threw a HTTP \(httpStatusCode) with response body: \(responseBody)") as NSError)
                     }
                 }
             }.resume()

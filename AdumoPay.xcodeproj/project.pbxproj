@@ -8,40 +8,141 @@
 
 /* Begin PBXBuildFile section */
 		8443E8CD2938D6CC00371C15 /* AdumoPay.h in Headers */ = {isa = PBXBuildFile; fileRef = 8443E8CC2938D6CC00371C15 /* AdumoPay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8443E8E82938D6F800371C15 /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D52938D6F700371C15 /* NetworkClientImpl.swift */; };
 		8443E8E92938D6F800371C15 /* AuthRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D72938D6F700371C15 /* AuthRepositoryImpl.swift */; };
 		8443E8EA2938D6F800371C15 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D82938D6F700371C15 /* HTTPMethod.swift */; };
-		8443E8EB2938D6F800371C15 /* AEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D92938D6F700371C15 /* AEClient.swift */; };
+		8443E8EB2938D6F800371C15 /* APService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8D92938D6F700371C15 /* APService.swift */; };
 		8443E8EC2938D6F800371C15 /* Adumo3DSecureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8DC2938D6F700371C15 /* Adumo3DSecureDelegate.swift */; };
 		8443E8ED2938D6F800371C15 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8DE2938D6F700371C15 /* AuthData.swift */; };
-		8443E8F02938D6F800371C15 /* Adumo3DSecureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */; };
-		8443E8F12938D6F800371C15 /* Adumo3DSecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */; };
-		8443E8F22938D7FD00371C15 /* CodeableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8E32938D6F700371C15 /* CodeableEntity.swift */; };
+		8443E8F22938D7FD00371C15 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8E32938D6F700371C15 /* Entity.swift */; };
 		8443E90029391E1100371C15 /* AEClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E8FF29391E1100371C15 /* AEClientDelegate.swift */; };
 		8443E924293C957A00371C15 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E923293C957A00371C15 /* HTTPHeaders.swift */; };
 		8443E9282940F8C900371C15 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E9272940F8C900371C15 /* AuthRepository.swift */; };
 		8443E92B2940FA4C00371C15 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8443E92A2940FA4C00371C15 /* Factory */; };
 		8443E92D2940FAE400371C15 /* Factory+Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E92C2940FAE400371C15 /* Factory+Repositories.swift */; };
-		8443E92F2940FE2100371C15 /* Factory+Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E92E2940FE2100371C15 /* Factory+Clients.swift */; };
+		8443E934294492A200371C15 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E933294492A200371C15 /* NetworkClient.swift */; };
+		8443E9392944957500371C15 /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E9382944957500371C15 /* TransactionRepository.swift */; };
+		8449A3C4294A39C9003ECAAD /* NSMutableData+AppendString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */; };
+		8449A3C8294BB9D1003ECAAD /* BankservData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C7294BB9D1003ECAAD /* BankservData.swift */; };
+		8449A3CA294BBB54003ECAAD /* BankservDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3C9294BBB54003ECAAD /* BankservDto.swift */; };
+		8449A3D1294BC12B003ECAAD /* Web3DSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */; };
+		8449A3D3294BC600003ECAAD /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D2294BC600003ECAAD /* WebView.swift */; };
+		8449A3D5294BC703003ECAAD /* Web3DSecureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */; };
+		8449A3D7294BC716003ECAAD /* Web3DSecureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */; };
+		8449A3DC29502E2C003ECAAD /* AuthoriseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */; };
+		8449A3DE29502E8B003ECAAD /* AuthoriseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */; };
+		8449A3E0296A0918003ECAAD /* ReverseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3DF296A0918003ECAAD /* ReverseDto.swift */; };
+		8449A3E2296A0CF3003ECAAD /* ReverseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E1296A0CF3003ECAAD /* ReverseData.swift */; };
+		8449A3E5296CA2B9003ECAAD /* AuthenticateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */; };
+		8449A3E7296CA49B003ECAAD /* Factory+UseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E6296CA49B003ECAAD /* Factory+UseCases.swift */; };
+		8449A3E9296CA572003ECAAD /* InititiateTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */; };
+		8449A3EB296CA67E003ECAAD /* VerifyTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */; };
+		8449A3ED296CA767003ECAAD /* AuthoriseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */; };
+		8449A3EF296CA802003ECAAD /* ReverseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */; };
+		8449A3F1296CAA6F003ECAAD /* SettleTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */; };
+		8449A3F3296CAABD003ECAAD /* SettleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F2296CAABD003ECAAD /* SettleDto.swift */; };
+		8449A3F5296CAB3F003ECAAD /* SettleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F4296CAB3F003ECAAD /* SettleData.swift */; };
+		8449A3F7296CABFE003ECAAD /* RefundTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F6296CABFE003ECAAD /* RefundTransactionUseCase.swift */; };
+		8449A3F9296CAC4A003ECAAD /* RefundDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3F8296CAC4A003ECAAD /* RefundDto.swift */; };
+		8449A3FB296CAC84003ECAAD /* RefundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A3FA296CAC84003ECAAD /* RefundData.swift */; };
+		8449A403296D9206003ECAAD /* AuthenticateUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A402296D9206003ECAAD /* AuthenticateUseCaseTest.swift */; };
+		8449A404296D9206003ECAAD /* AdumoPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8443E8C92938D6CC00371C15 /* AdumoPay.framework */; platformFilter = ios; };
+		8449A40C296D9374003ECAAD /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 8449A40B296D9374003ECAAD /* Mockingbird */; };
+		8449A40F296D97B9003ECAAD /* APServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A40E296D97B9003ECAAD /* APServiceProtocol.swift */; };
+		8449A415296DDCDD003ECAAD /* TestMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A414296DDCDD003ECAAD /* TestMocks.swift */; };
+		8449A417296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A416296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift */; };
+		8449A422296DFE7C003ECAAD /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A41B296DFE7C003ECAAD /* NetworkClientImpl.swift */; };
+		8449A423296DFE7C003ECAAD /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A41D296DFE7C003ECAAD /* ServiceResult.swift */; };
+		8449A425296DFE7C003ECAAD /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A41F296DFE7C003ECAAD /* ApiEndpoint.swift */; };
+		8449A426296DFE7C003ECAAD /* Factory+Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A420296DFE7C003ECAAD /* Factory+Clients.swift */; };
+		8449A428296F23FC003ECAAD /* InitiateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A427296F23FC003ECAAD /* InitiateData.swift */; };
+		8449A42B29700040003ECAAD /* BankServResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42A29700040003ECAAD /* BankServResponseDto.swift */; };
+		8449A42E2971C588003ECAAD /* VerifyTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */; };
+		8449A4302971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */; };
+		8449A4322971C961003ECAAD /* ReverseTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */; };
+		8449A4342971CA71003ECAAD /* SettleTransactionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */; };
+		8449A4362971CB4B003ECAAD /* RefundTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */; };
+		8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */; };
+		8449A43C2971D6E9003ECAAD /* APServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A43B2971D6E9003ECAAD /* APServiceTest.swift */; };
+		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
+		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
+		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
+		84F4BD4D2945BEAA003921EF /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4C2945BEAA003921EF /* ErrorResponse.swift */; };
+		84F4BD5029491973003921EF /* UIDevice+IPAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4F29491973003921EF /* UIDevice+IPAddress.swift */; };
+		CE127293448B4C0AF508B7A6 /* AdumoPay_Tests-AdumoPayMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E62A1C2A6C18847E18C97 /* AdumoPay_Tests-AdumoPayMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8449A405296D9206003ECAAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8443E8C02938D6CC00371C15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8443E8C82938D6CC00371C15;
+			remoteInfo = AdumoPay;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2D4E62A1C2A6C18847E18C97 /* AdumoPay_Tests-AdumoPayMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "AdumoPay_Tests-AdumoPayMocks.generated.swift"; path = "MockingbirdMocks/AdumoPay_Tests-AdumoPayMocks.generated.swift"; sourceTree = "<group>"; };
 		8443E8C92938D6CC00371C15 /* AdumoPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdumoPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8443E8CC2938D6CC00371C15 /* AdumoPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdumoPay.h; sourceTree = "<group>"; };
-		8443E8D52938D6F700371C15 /* NetworkClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
 		8443E8D72938D6F700371C15 /* AuthRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImpl.swift; sourceTree = "<group>"; };
 		8443E8D82938D6F700371C15 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		8443E8D92938D6F700371C15 /* AEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEClient.swift; sourceTree = "<group>"; };
+		8443E8D92938D6F700371C15 /* APService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APService.swift; sourceTree = "<group>"; };
 		8443E8DC2938D6F700371C15 /* Adumo3DSecureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adumo3DSecureDelegate.swift; sourceTree = "<group>"; };
 		8443E8DE2938D6F700371C15 /* AuthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
-		8443E8E32938D6F700371C15 /* CodeableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeableEntity.swift; sourceTree = "<group>"; };
-		8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Adumo3DSecureView.xib; sourceTree = "<group>"; };
-		8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adumo3DSecureViewController.swift; sourceTree = "<group>"; };
+		8443E8E32938D6F700371C15 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		8443E8FF29391E1100371C15 /* AEClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEClientDelegate.swift; sourceTree = "<group>"; };
 		8443E923293C957A00371C15 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		8443E9272940F8C900371C15 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		8443E92C2940FAE400371C15 /* Factory+Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+Repositories.swift"; sourceTree = "<group>"; };
-		8443E92E2940FE2100371C15 /* Factory+Clients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+Clients.swift"; sourceTree = "<group>"; };
+		8443E933294492A200371C15 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		8443E9382944957500371C15 /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
+		8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableData+AppendString.swift"; sourceTree = "<group>"; };
+		8449A3C7294BB9D1003ECAAD /* BankservData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankservData.swift; sourceTree = "<group>"; };
+		8449A3C9294BBB54003ECAAD /* BankservDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankservDto.swift; sourceTree = "<group>"; };
+		8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureView.swift; sourceTree = "<group>"; };
+		8449A3D2294BC600003ECAAD /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureViewModel.swift; sourceTree = "<group>"; };
+		8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3DSecureConfig.swift; sourceTree = "<group>"; };
+		8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseData.swift; sourceTree = "<group>"; };
+		8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseDto.swift; sourceTree = "<group>"; };
+		8449A3DF296A0918003ECAAD /* ReverseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseDto.swift; sourceTree = "<group>"; };
+		8449A3E1296A0CF3003ECAAD /* ReverseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseData.swift; sourceTree = "<group>"; };
+		8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateUseCase.swift; sourceTree = "<group>"; };
+		8449A3E6296CA49B003ECAAD /* Factory+UseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+UseCases.swift"; sourceTree = "<group>"; };
+		8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InititiateTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3F2296CAABD003ECAAD /* SettleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleDto.swift; sourceTree = "<group>"; };
+		8449A3F4296CAB3F003ECAAD /* SettleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleData.swift; sourceTree = "<group>"; };
+		8449A3F6296CABFE003ECAAD /* RefundTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A3F8296CAC4A003ECAAD /* RefundDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundDto.swift; sourceTree = "<group>"; };
+		8449A3FA296CAC84003ECAAD /* RefundData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundData.swift; sourceTree = "<group>"; };
+		8449A400296D9206003ECAAD /* AdumoPay_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdumoPay_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8449A402296D9206003ECAAD /* AuthenticateUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A40E296D97B9003ECAAD /* APServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APServiceProtocol.swift; sourceTree = "<group>"; };
+		8449A414296DDCDD003ECAAD /* TestMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMocks.swift; sourceTree = "<group>"; };
+		8449A416296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateTransactionUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A41B296DFE7C003ECAAD /* NetworkClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
+		8449A41D296DFE7C003ECAAD /* ServiceResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceResult.swift; sourceTree = "<group>"; };
+		8449A41F296DFE7C003ECAAD /* ApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
+		8449A420296DFE7C003ECAAD /* Factory+Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Factory+Clients.swift"; sourceTree = "<group>"; };
+		8449A427296F23FC003ECAAD /* InitiateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateData.swift; sourceTree = "<group>"; };
+		8449A42A29700040003ECAAD /* BankServResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServResponseDto.swift; sourceTree = "<group>"; };
+		8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseTransactionUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleTransactionUseCaseTest.swift; sourceTree = "<group>"; };
+		8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundTransactionUseCase.swift; sourceTree = "<group>"; };
+		8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryTest.swift; sourceTree = "<group>"; };
+		8449A43B2971D6E9003ECAAD /* APServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APServiceTest.swift; path = AdumoPay_Tests/APServiceTest.swift; sourceTree = SOURCE_ROOT; };
+		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
+		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
+		84F4BD4C2945BEAA003921EF /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		84F4BD4F29491973003921EF /* UIDevice+IPAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+IPAddress.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +154,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8449A3FD296D9206003ECAAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8449A40C296D9374003ECAAD /* Mockingbird in Frameworks */,
+				8449A404296D9206003ECAAD /* AdumoPay.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -60,7 +170,9 @@
 			isa = PBXGroup;
 			children = (
 				8443E8CB2938D6CC00371C15 /* AdumoPay */,
+				8449A401296D9206003ECAAD /* AdumoPay_Tests */,
 				8443E8CA2938D6CC00371C15 /* Products */,
+				9DD31163E702F8370AA9A856 /* Generated Mocks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				8443E8C92938D6CC00371C15 /* AdumoPay.framework */,
+				8449A400296D9206003ECAAD /* AdumoPay_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,20 +199,13 @@
 		8443E8D32938D6F700371C15 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8443E8D42938D6F700371C15 /* Network */,
+				8449A41C296DFE7C003ECAAD /* Network */,
+				84F4BD4E29491953003921EF /* Extension */,
 				8443E8D62938D6F700371C15 /* Repositories */,
-				8443E8D92938D6F700371C15 /* AEClient.swift */,
+				8443E8D92938D6F700371C15 /* APService.swift */,
+				8449A3E6296CA49B003ECAAD /* Factory+UseCases.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		8443E8D42938D6F700371C15 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				8443E8D52938D6F700371C15 /* NetworkClientImpl.swift */,
-				8443E92E2940FE2100371C15 /* Factory+Clients.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		8443E8D62938D6F700371C15 /* Repositories */ = {
@@ -107,6 +213,7 @@
 			children = (
 				8443E92C2940FAE400371C15 /* Factory+Repositories.swift */,
 				8443E8D72938D6F700371C15 /* AuthRepositoryImpl.swift */,
+				84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -115,10 +222,11 @@
 			isa = PBXGroup;
 			children = (
 				8443E8D82938D6F700371C15 /* HTTPMethod.swift */,
+				8443E923293C957A00371C15 /* HTTPHeaders.swift */,
 				8443E8DB2938D6F700371C15 /* Delegates */,
 				8443E8DD2938D6F700371C15 /* Entities */,
 				8443E8DF2938D6F700371C15 /* Interfaces */,
-				8443E923293C957A00371C15 /* HTTPHeaders.swift */,
+				8449A3E3296CA274003ECAAD /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -135,7 +243,11 @@
 		8443E8DD2938D6F700371C15 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				8443E8DE2938D6F700371C15 /* AuthData.swift */,
+				8449A42C2971B025003ECAAD /* Public */,
+				8449A3CB294BBB58003ECAAD /* Dto */,
+				8449A3C7294BB9D1003ECAAD /* BankservData.swift */,
+				84F4BD462944A06B003921EF /* Transaction.swift */,
+				84F4BD4C2945BEAA003921EF /* ErrorResponse.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -143,6 +255,8 @@
 		8443E8DF2938D6F700371C15 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				8449A40D296D97A0003ECAAD /* Service */,
+				8443E9322944929100371C15 /* Network */,
 				8443E9262940F8AA00371C15 /* Repositories */,
 				8443E8E22938D6F700371C15 /* Entities */,
 			);
@@ -152,7 +266,7 @@
 		8443E8E22938D6F700371C15 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				8443E8E32938D6F700371C15 /* CodeableEntity.swift */,
+				8443E8E32938D6F700371C15 /* Entity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -160,26 +274,155 @@
 		8443E8E42938D6F800371C15 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8443E8E52938D6F800371C15 /* Adumo3DSecureView.xib */,
-				8443E8E62938D6F800371C15 /* Adumo3DSecureViewController.swift */,
-				8443E8E72938D6F800371C15 /* 3DSecure */,
+				8449A3CE294BC107003ECAAD /* Views */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		8443E8E72938D6F800371C15 /* 3DSecure */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 3DSecure;
 			sourceTree = "<group>";
 		};
 		8443E9262940F8AA00371C15 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				8443E9272940F8C900371C15 /* AuthRepository.swift */,
+				8443E9382944957500371C15 /* TransactionRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		8443E9322944929100371C15 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8443E933294492A200371C15 /* NetworkClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8449A3CB294BBB58003ECAAD /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				8449A42A29700040003ECAAD /* BankServResponseDto.swift */,
+				8449A3C9294BBB54003ECAAD /* BankservDto.swift */,
+				8449A3DD29502E8B003ECAAD /* AuthoriseDto.swift */,
+				8449A3DF296A0918003ECAAD /* ReverseDto.swift */,
+				8449A3F2296CAABD003ECAAD /* SettleDto.swift */,
+				8449A3F8296CAC4A003ECAAD /* RefundDto.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		8449A3CE294BC107003ECAAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8449A3CF294BC110003ECAAD /* Web3DSecure */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8449A3CF294BC110003ECAAD /* Web3DSecure */ = {
+			isa = PBXGroup;
+			children = (
+				8449A3D6294BC716003ECAAD /* Web3DSecureConfig.swift */,
+				8449A3D0294BC12B003ECAAD /* Web3DSecureView.swift */,
+				8449A3D4294BC703003ECAAD /* Web3DSecureViewModel.swift */,
+				8449A3D2294BC600003ECAAD /* WebView.swift */,
+			);
+			path = Web3DSecure;
+			sourceTree = "<group>";
+		};
+		8449A3E3296CA274003ECAAD /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				8449A3E4296CA2B9003ECAAD /* AuthenticateUseCase.swift */,
+				8449A3E8296CA572003ECAAD /* InititiateTransactionUseCase.swift */,
+				8449A3EA296CA67E003ECAAD /* VerifyTransactionUseCase.swift */,
+				8449A3EC296CA767003ECAAD /* AuthoriseTransactionUseCase.swift */,
+				8449A3EE296CA802003ECAAD /* ReverseTransactionUseCase.swift */,
+				8449A3F0296CAA6F003ECAAD /* SettleTransactionUseCase.swift */,
+				8449A3F6296CABFE003ECAAD /* RefundTransactionUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		8449A401296D9206003ECAAD /* AdumoPay_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8449A414296DDCDD003ECAAD /* TestMocks.swift */,
+				8449A43B2971D6E9003ECAAD /* APServiceTest.swift */,
+				8449A4382971CE14003ECAAD /* Repositories */,
+				8449A4372971CBCF003ECAAD /* UseCases */,
+			);
+			path = AdumoPay_Tests;
+			sourceTree = "<group>";
+		};
+		8449A40D296D97A0003ECAAD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8449A40E296D97B9003ECAAD /* APServiceProtocol.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8449A41C296DFE7C003ECAAD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8449A41F296DFE7C003ECAAD /* ApiEndpoint.swift */,
+				8449A420296DFE7C003ECAAD /* Factory+Clients.swift */,
+				8449A41B296DFE7C003ECAAD /* NetworkClientImpl.swift */,
+				8449A41D296DFE7C003ECAAD /* ServiceResult.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8449A42C2971B025003ECAAD /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				8443E8DE2938D6F700371C15 /* AuthData.swift */,
+				84F4BD482944A0FA003921EF /* TransactionData.swift */,
+				8449A3DB29502E2C003ECAAD /* AuthoriseData.swift */,
+				8449A3E1296A0CF3003ECAAD /* ReverseData.swift */,
+				8449A3F4296CAB3F003ECAAD /* SettleData.swift */,
+				8449A3FA296CAC84003ECAAD /* RefundData.swift */,
+				8449A427296F23FC003ECAAD /* InitiateData.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		8449A4372971CBCF003ECAAD /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				8449A42D2971C588003ECAAD /* VerifyTransactionUseCase.swift */,
+				8449A402296D9206003ECAAD /* AuthenticateUseCaseTest.swift */,
+				8449A416296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift */,
+				8449A42F2971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift */,
+				8449A4312971C961003ECAAD /* ReverseTransactionUseCase.swift */,
+				8449A4332971CA71003ECAAD /* SettleTransactionUseCaseTest.swift */,
+				8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		8449A4382971CE14003ECAAD /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		84F4BD4E29491953003921EF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				84F4BD4F29491973003921EF /* UIDevice+IPAddress.swift */,
+				8449A3C3294A39C9003ECAAD /* NSMutableData+AppendString.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		9DD31163E702F8370AA9A856 /* Generated Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				2D4E62A1C2A6C18847E18C97 /* AdumoPay_Tests-AdumoPayMocks.generated.swift */,
+			);
+			name = "Generated Mocks";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +460,28 @@
 			productReference = 8443E8C92938D6CC00371C15 /* AdumoPay.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		8449A3FF296D9206003ECAAD /* AdumoPay_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8449A407296D9206003ECAAD /* Build configuration list for PBXNativeTarget "AdumoPay_Tests" */;
+			buildPhases = (
+				31B2103ACA027441C099F910 /* Generate Mockingbird Mocks */,
+				8449A3FC296D9206003ECAAD /* Sources */,
+				8449A3FD296D9206003ECAAD /* Frameworks */,
+				8449A3FE296D9206003ECAAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8449A406296D9206003ECAAD /* PBXTargetDependency */,
+			);
+			name = AdumoPay_Tests;
+			packageProductDependencies = (
+				8449A40B296D9374003ECAAD /* Mockingbird */,
+			);
+			productName = AdumoPay_Tests;
+			productReference = 8449A400296D9206003ECAAD /* AdumoPay_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -224,10 +489,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					8443E8C82938D6CC00371C15 = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					8449A3FF296D9206003ECAAD = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -242,12 +511,14 @@
 			mainGroup = 8443E8BF2938D6CC00371C15;
 			packageReferences = (
 				8443E9292940FA4C00371C15 /* XCRemoteSwiftPackageReference "Factory" */,
+				8449A40A296D9374003ECAAD /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = 8443E8CA2938D6CC00371C15 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8443E8C82938D6CC00371C15 /* AdumoPay */,
+				8449A3FF296D9206003ECAAD /* AdumoPay_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,34 +528,120 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8443E8F02938D6F800371C15 /* Adumo3DSecureView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8449A3FE296D9206003ECAAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31B2103ACA027441C099F910 /* Generate Mockingbird Mocks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mockingbird Mocks";
+			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/AdumoPay_Tests-AdumoPayMocks.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\n# Prevent Xcode 13 from running this script while indexing.\n[[ \"${ACTION}\" == \"indexbuild\" ]] && exit 0\n\n# Infer the derived data location from the build environment.\n[[ -z \"${DERIVED_DATA+x}\" ]] && DERIVED_DATA=\"$(echo \"${BUILD_ROOT}\" | sed -n 's|\\(.*\\)/Build/.*|\\1|p')\"\n\n\"${DERIVED_DATA}/SourcePackages/checkouts/mockingbird/mockingbird\" generate --targets \"AdumoPay\" --outputs \"${SRCROOT}/MockingbirdMocks/AdumoPay_Tests-AdumoPayMocks.generated.swift\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8443E8C52938D6CC00371C15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8443E8F22938D7FD00371C15 /* CodeableEntity.swift in Sources */,
+				8449A425296DFE7C003ECAAD /* ApiEndpoint.swift in Sources */,
+				8449A3D3294BC600003ECAAD /* WebView.swift in Sources */,
+				8449A3E0296A0918003ECAAD /* ReverseDto.swift in Sources */,
+				8449A428296F23FC003ECAAD /* InitiateData.swift in Sources */,
+				8449A3E2296A0CF3003ECAAD /* ReverseData.swift in Sources */,
+				8449A3EF296CA802003ECAAD /* ReverseTransactionUseCase.swift in Sources */,
+				8449A426296DFE7C003ECAAD /* Factory+Clients.swift in Sources */,
+				8449A3D5294BC703003ECAAD /* Web3DSecureViewModel.swift in Sources */,
+				8449A423296DFE7C003ECAAD /* ServiceResult.swift in Sources */,
+				8449A3DC29502E2C003ECAAD /* AuthoriseData.swift in Sources */,
+				8449A40F296D97B9003ECAAD /* APServiceProtocol.swift in Sources */,
+				8443E8F22938D7FD00371C15 /* Entity.swift in Sources */,
 				8443E9282940F8C900371C15 /* AuthRepository.swift in Sources */,
-				8443E8E82938D6F800371C15 /* NetworkClientImpl.swift in Sources */,
+				8449A3C8294BB9D1003ECAAD /* BankservData.swift in Sources */,
 				8443E924293C957A00371C15 /* HTTPHeaders.swift in Sources */,
+				8449A3F1296CAA6F003ECAAD /* SettleTransactionUseCase.swift in Sources */,
 				8443E92D2940FAE400371C15 /* Factory+Repositories.swift in Sources */,
+				84F4BD4D2945BEAA003921EF /* ErrorResponse.swift in Sources */,
+				8449A3C4294A39C9003ECAAD /* NSMutableData+AppendString.swift in Sources */,
+				8449A3CA294BBB54003ECAAD /* BankservDto.swift in Sources */,
 				8443E8ED2938D6F800371C15 /* AuthData.swift in Sources */,
+				8449A3F7296CABFE003ECAAD /* RefundTransactionUseCase.swift in Sources */,
+				8449A42B29700040003ECAAD /* BankServResponseDto.swift in Sources */,
+				8449A3E5296CA2B9003ECAAD /* AuthenticateUseCase.swift in Sources */,
 				8443E90029391E1100371C15 /* AEClientDelegate.swift in Sources */,
+				84F4BD472944A06B003921EF /* Transaction.swift in Sources */,
+				8443E9392944957500371C15 /* TransactionRepository.swift in Sources */,
+				84F4BD5029491973003921EF /* UIDevice+IPAddress.swift in Sources */,
+				8449A3F9296CAC4A003ECAAD /* RefundDto.swift in Sources */,
+				8449A3D7294BC716003ECAAD /* Web3DSecureConfig.swift in Sources */,
+				8449A3E7296CA49B003ECAAD /* Factory+UseCases.swift in Sources */,
 				8443E8E92938D6F800371C15 /* AuthRepositoryImpl.swift in Sources */,
-				8443E8EB2938D6F800371C15 /* AEClient.swift in Sources */,
-				8443E8F12938D6F800371C15 /* Adumo3DSecureViewController.swift in Sources */,
-				8443E92F2940FE2100371C15 /* Factory+Clients.swift in Sources */,
+				8449A422296DFE7C003ECAAD /* NetworkClientImpl.swift in Sources */,
+				8449A3F3296CAABD003ECAAD /* SettleDto.swift in Sources */,
+				8443E8EB2938D6F800371C15 /* APService.swift in Sources */,
+				84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */,
+				8443E934294492A200371C15 /* NetworkClient.swift in Sources */,
+				8449A3FB296CAC84003ECAAD /* RefundData.swift in Sources */,
+				8449A3DE29502E8B003ECAAD /* AuthoriseDto.swift in Sources */,
 				8443E8EA2938D6F800371C15 /* HTTPMethod.swift in Sources */,
+				84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */,
 				8443E8EC2938D6F800371C15 /* Adumo3DSecureDelegate.swift in Sources */,
+				8449A3ED296CA767003ECAAD /* AuthoriseTransactionUseCase.swift in Sources */,
+				8449A3EB296CA67E003ECAAD /* VerifyTransactionUseCase.swift in Sources */,
+				8449A3D1294BC12B003ECAAD /* Web3DSecureView.swift in Sources */,
+				8449A3E9296CA572003ECAAD /* InititiateTransactionUseCase.swift in Sources */,
+				8449A3F5296CAB3F003ECAAD /* SettleData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8449A3FC296D9206003ECAAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8449A403296D9206003ECAAD /* AuthenticateUseCaseTest.swift in Sources */,
+				8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */,
+				8449A4342971CA71003ECAAD /* SettleTransactionUseCaseTest.swift in Sources */,
+				8449A417296DE5A9003ECAAD /* InitiateTransactionUseCaseTest.swift in Sources */,
+				8449A415296DDCDD003ECAAD /* TestMocks.swift in Sources */,
+				8449A42E2971C588003ECAAD /* VerifyTransactionUseCase.swift in Sources */,
+				CE127293448B4C0AF508B7A6 /* AdumoPay_Tests-AdumoPayMocks.generated.swift in Sources */,
+				8449A4362971CB4B003ECAAD /* RefundTransactionUseCase.swift in Sources */,
+				8449A43C2971D6E9003ECAAD /* APServiceTest.swift in Sources */,
+				8449A4322971C961003ECAAD /* ReverseTransactionUseCase.swift in Sources */,
+				8449A4302971C73D003ECAAD /* AuthoriseTransactionUseCaseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8449A406296D9206003ECAAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8443E8C82938D6CC00371C15 /* AdumoPay */;
+			targetProxy = 8449A405296D9206003ECAAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8443E8CE2938D6CC00371C15 /* Debug */ = {
@@ -469,6 +826,46 @@
 			};
 			name = Release;
 		};
+		8449A408296D9206003ECAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H8P4K9XRN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.za.mincdevelopment.AdumoPay-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8449A409296D9206003ECAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H8P4K9XRN7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.za.mincdevelopment.AdumoPay-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -490,6 +887,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8449A407296D9206003ECAAD /* Build configuration list for PBXNativeTarget "AdumoPay_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8449A408296D9206003ECAAD /* Debug */,
+				8449A409296D9206003ECAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -501,6 +907,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		8449A40A296D9374003ECAAD /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/birdrides/mockingbird";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -508,6 +922,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8443E9292940FA4C00371C15 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		8449A40B296D9374003ECAAD /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8449A40A296D9374003ECAAD /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

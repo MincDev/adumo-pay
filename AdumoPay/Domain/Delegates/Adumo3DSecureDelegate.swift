@@ -7,8 +7,6 @@
 
 import Foundation
 
-@objc public protocol Adumo3DSecureDelegate {
-    @objc optional func didFinishOTPInput(with transactionIndex: String, using pares: String)
-
-    @objc optional func didCancelOTPInput()
+protocol Adumo3DSecureDelegate {
+    func didDismissWebView(isCancel: Bool, transactionIndex: String?, pares: String?, cvvRequired: Bool)
 }
