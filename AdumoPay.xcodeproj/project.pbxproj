@@ -83,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		2D4E62A1C2A6C18847E18C97 /* AdumoPay_Tests-AdumoPayMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "AdumoPay_Tests-AdumoPayMocks.generated.swift"; path = "MockingbirdMocks/AdumoPay_Tests-AdumoPayMocks.generated.swift"; sourceTree = "<group>"; };
+		8406BF212972FC4F00268AE9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8443E8C92938D6CC00371C15 /* AdumoPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdumoPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8443E8CC2938D6CC00371C15 /* AdumoPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdumoPay.h; sourceTree = "<group>"; };
 		8443E8D72938D6F700371C15 /* AuthRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 		8443E8BF2938D6CC00371C15 = {
 			isa = PBXGroup;
 			children = (
+				8406BF212972FC4F00268AE9 /* README.md */,
 				8443E8CB2938D6CC00371C15 /* AdumoPay */,
 				8449A401296D9206003ECAAD /* AdumoPay_Tests */,
 				8443E8CA2938D6CC00371C15 /* Products */,
