@@ -21,7 +21,7 @@ final class InitiateTransactionUseCaseTest: XCTestCase {
         self.useCase = InitiateTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockTransactionData()
 
         givenSwift(await mockTransRepo.initiate(with: any())).will { _ in
@@ -37,7 +37,7 @@ final class InitiateTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.initiate(with: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.initiate(with: any())).will { _ in

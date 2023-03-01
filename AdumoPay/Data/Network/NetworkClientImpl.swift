@@ -13,11 +13,10 @@ struct NetworkClientImpl: NetworkClient {
     var httpMethod: HTTPMethod = .get
     var httpBody: (any Encodable)?
 
-    func execute<T: Entity>(_ type: T.Type, using urlString: String) async throws -> T {
+    func execute<T>(_ type: T.Type, using urlString: String) async throws -> T where T : Entity {
         guard let url = URL(string: urlString) else { throw URLError(.badURL) }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
-        let requestBody = NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body"
 
         if let safeHeaders = headers {
             safeHeaders.forEach { header in
@@ -30,6 +29,7 @@ struct NetworkClientImpl: NetworkClient {
         }
 
         if debugMode {
+            let requestBody = NSString(data: request.httpBody!, encoding: String.Encoding.utf8.rawValue) ?? "No Request Body"
             debugPrint("Request Body: ******************* \n\n \(requestBody)")
         }
 

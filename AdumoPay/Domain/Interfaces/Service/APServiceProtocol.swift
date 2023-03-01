@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+internal protocol APServiceInternalProtocol {
+    func getAuthData() -> AuthData?
+}
+
 public protocol APServiceProtocol {
     func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> APResult<Any?>
     func isAuthenticated() -> Bool

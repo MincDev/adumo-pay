@@ -21,7 +21,7 @@ final class VerifyTransactionUseCaseTest: XCTestCase {
         self.useCase = VerifyTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockBankServData()
 
         givenSwift(await mockTransRepo.verify(with: any())).will { _ in
@@ -37,7 +37,7 @@ final class VerifyTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.verify(with: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.verify(with: any())).will { _ in

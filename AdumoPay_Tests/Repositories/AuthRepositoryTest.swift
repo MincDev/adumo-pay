@@ -21,19 +21,14 @@ class AuthRepositoryTest: XCTestCase {
     }
 
     func testGetTokenInvokesNetworkClient() async throws {
-//        let mockEntity = AuthData.self
-//        let mockUrl = "mock-url"
-//
-//        let expectation = expectation(description: "executeNetworkClient")
-//        givenSwift(await mockNetworkClient.execute(any(), using: any())).will { _, _ in
-//            expectation.fulfill()
-//            return mockAuthData()
-//        }
-//
-//        _ = try await mockAuthRepo.getToken(for: "mock-merchant-id", using: "mock-secret-id")
-//
-//        await waitForExpectations(timeout: 1)
-//
-//        verify(await mockNetworkClient.execute(mockEntity, using: any())).wasCalled()
+        let mockAuthData = mockAuthData()
+
+        given(await mockNetworkClient.execute(any(AuthData.Type.self), using: any())).willReturn(mockAuthData)
+
+        _ = try await mockAuthRepo.getToken(for: "mock-merchant-id", using: "mock-secret-id")
+
+        verify(await mockNetworkClient.execute(any(AuthData.Type.self), using: any())).wasCalled()
     }
+
+
 }

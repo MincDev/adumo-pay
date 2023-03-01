@@ -21,7 +21,7 @@ final class ReverseTransactionUseCaseTest: XCTestCase {
         self.useCase = ReverseTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockReverseData()
 
         givenSwift(await mockTransRepo.reverse(transactionId: any())).will { _ in
@@ -37,7 +37,7 @@ final class ReverseTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.reverse(transactionId: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.reverse(transactionId: any())).will { _ in

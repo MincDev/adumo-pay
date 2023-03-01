@@ -13,6 +13,7 @@ import SwiftUI
 public class APService: APServiceProtocol {
     public static let shared = APService()
     public var delegate: AEClientDelegate?
+    public var environment: Environment = .test
     internal static var authData: AuthData?
     private var webViewContinuation: CheckedContinuation<APResultCancellable<InitiateData>, Never>?
 
@@ -167,6 +168,12 @@ public class APService: APServiceProtocol {
         } catch {
             return .failure(error: error)
         }
+    }
+}
+
+internal class APServiceInternal: APServiceInternalProtocol {
+    internal func getAuthData() -> AuthData? {
+        return APService.authData
     }
 }
 

@@ -27,5 +27,5 @@ protocol NetworkClient {
     /// - Parameters:
     ///     - type: The Entity class that is expected to be returned
     ///     - urlString: The url string to be used for the data task
-    func execute<T: Entity>(_ type: T.Type, using urlString: String) async throws -> T
+    func execute<T>(_ type: T.Type, using urlString: String) async throws -> T where T : Entity
 }

@@ -9,16 +9,16 @@ import Foundation
 import Factory
 
 extension Container {
-    // Should only be accessible through Facade
-    fileprivate static let authenticateUseCase = Factory<AuthenticateUseCase> { AuthenticateUseCaseImpl() }
-    fileprivate static let initiateTransactionUseCase = Factory<InitiateTransactionUseCase> { InitiateTransactionUseCaseImpl() }
-    fileprivate static let verifyTransactionUseCase = Factory<VerifyTransactionUseCase> { VerifyTransactionUseCaseImpl() }
-    fileprivate static let authoriseTransactionUseCase = Factory<AuthoriseTransactionUseCase> { AuthoriseTransactionUseCaseImpl() }
-    fileprivate static let reverseTransactionUseCase = Factory<ReverseTransactionUseCase> { ReverseTransactionUseCaseImpl() }
-    fileprivate static let settleTransactionUseCase = Factory<SettleTransactionUseCase> { SettleTransactionUseCaseImpl() }
-    fileprivate static let refundTransactionUseCase = Factory<RefundTransactionUseCase> { RefundTransactionUseCaseImpl() }
+    static let authenticateUseCase = Factory<AuthenticateUseCase> { AuthenticateUseCaseImpl() }
+    static let initiateTransactionUseCase = Factory<InitiateTransactionUseCase> { InitiateTransactionUseCaseImpl() }
+    static let verifyTransactionUseCase = Factory<VerifyTransactionUseCase> { VerifyTransactionUseCaseImpl() }
+    static let authoriseTransactionUseCase = Factory<AuthoriseTransactionUseCase> { AuthoriseTransactionUseCaseImpl() }
+    static let reverseTransactionUseCase = Factory<ReverseTransactionUseCase> { ReverseTransactionUseCaseImpl() }
+    static let settleTransactionUseCase = Factory<SettleTransactionUseCase> { SettleTransactionUseCaseImpl() }
+    static let refundTransactionUseCase = Factory<RefundTransactionUseCase> { RefundTransactionUseCaseImpl() }
 
     static let useCases = Factory<AdumoPayUseCases> { AdumoPayUseCasesFacade() }
+    static let service = Factory<APServiceInternalProtocol> { APServiceInternal() }
 }
 
 protocol AdumoPayUseCases {

@@ -11,9 +11,10 @@ import Factory
 final class TransactionRepositoryImpl: TransactionRepository {
 
     @Injected(Container.networkClient) private var network
+    @Injected(Container.service) private var service
 
     func initiate(with transaction: Transaction) async throws -> TransactionData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.initiateTransaction.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.initiateTransaction.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -24,7 +25,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     func verify(with body: BankservDto) async throws -> BankservData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.authenticate3ds.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.authenticate3ds.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -35,7 +36,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     func authorise(with transaction: AuthoriseDto) async throws -> AuthoriseData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.authorise.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.authorise.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -46,7 +47,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     func reverse(transactionId: String) async throws -> ReverseData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.reverse.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.reverse.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -57,7 +58,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     func settle(transactionId: String, for amount: Double) async throws -> SettleData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.settle.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.settle.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -68,7 +69,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     func refund(transactionId: String, for amount: Double) async throws -> RefundData {
-        let url = Environment.url.appendingPathComponent(ApiEndpoint.refund.path).absoluteString
+        let url = Env.baseURL.appendingPathComponent(ApiEndpoint.refund.path).absoluteString
         network.headers = [
             "Content-Type": "application/json",
             "Authorization": try getAuthorisation()
@@ -79,7 +80,7 @@ final class TransactionRepositoryImpl: TransactionRepository {
     }
 
     private func getAuthorisation() throws -> String {
-        guard let authData = APService.authData else {
+        guard let authData = service.getAuthData() else {
             throw InternalError("Not Authenticated")
         }
 

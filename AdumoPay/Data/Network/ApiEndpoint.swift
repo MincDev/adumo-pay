@@ -36,11 +36,18 @@ enum ApiEndpoint {
     }
 }
 
-// TODO: This struct is for testing only. Must be replaced by something else
-struct Environment {
-    static var url: URL {
-        return URL(string: "https://staging-apiv3.adumoonline.com")!
+public enum Environment {
+    case prod
+    case test
+}
 
-//        return URL(string: "https://apiv3.adumoonline.com/")!
+internal struct Env {
+    static var baseURL: URL {
+        switch APService.shared.environment {
+        case .test:
+            return URL(string: "https://staging-apiv3.adumoonline.com")!
+        case .prod:
+            return URL(string: "https://apiv3.adumoonline.com/")!
+        }
     }
 }

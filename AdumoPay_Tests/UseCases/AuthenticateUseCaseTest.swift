@@ -21,7 +21,7 @@ final class AuthenticateUseCaseTest: XCTestCase {
         useCase = AuthenticateUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult: AuthData = .init(
             accessToken: "mock-access-token",
             tokenType: "mock-token-type",
@@ -44,7 +44,7 @@ final class AuthenticateUseCaseTest: XCTestCase {
         verify(await mockAuthRepo.getToken(for: any(), using: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockAuthRepo.getToken(for: any(), using: any())).will { _, _ in

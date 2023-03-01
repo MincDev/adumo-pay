@@ -21,7 +21,7 @@ final class RefundTransactionUseCaseTest: XCTestCase {
         self.useCase = RefundTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockRefundData()
 
         givenSwift(await mockTransRepo.refund(transactionId: any(), for: any())).will { _, _ in
@@ -37,7 +37,7 @@ final class RefundTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.refund(transactionId: any(), for: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.refund(transactionId: any(), for: any())).will { _, _ in

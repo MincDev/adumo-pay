@@ -21,7 +21,7 @@ final class SettleTransactionUseCaseTest: XCTestCase {
         self.useCase = SettleTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockSettleData()
 
         givenSwift(await mockTransRepo.settle(transactionId: any(), for: any())).will { _, _ in
@@ -37,7 +37,7 @@ final class SettleTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.settle(transactionId: any(), for: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.settle(transactionId: any(), for: any())).will { _, _ in

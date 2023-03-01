@@ -63,6 +63,7 @@
 		8449A4362971CB4B003ECAAD /* RefundTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */; };
 		8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */; };
 		8449A43C2971D6E9003ECAAD /* APServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449A43B2971D6E9003ECAAD /* APServiceTest.swift */; };
+		845D5758298E6CD500DC5398 /* TransactionRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D5757298E6CD500DC5398 /* TransactionRepositoryTest.swift */; };
 		84F4BD472944A06B003921EF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD462944A06B003921EF /* Transaction.swift */; };
 		84F4BD492944A0FA003921EF /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD482944A0FA003921EF /* TransactionData.swift */; };
 		84F4BD4B2944A28B003921EF /* TransactionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */; };
@@ -138,6 +139,7 @@
 		8449A4352971CB4B003ECAAD /* RefundTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundTransactionUseCase.swift; sourceTree = "<group>"; };
 		8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryTest.swift; sourceTree = "<group>"; };
 		8449A43B2971D6E9003ECAAD /* APServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APServiceTest.swift; path = AdumoPay_Tests/APServiceTest.swift; sourceTree = SOURCE_ROOT; };
+		845D5757298E6CD500DC5398 /* TransactionRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryTest.swift; sourceTree = "<group>"; };
 		84F4BD462944A06B003921EF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		84F4BD482944A0FA003921EF /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		84F4BD4A2944A28B003921EF /* TransactionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		8449A4382971CE14003ECAAD /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				845D5757298E6CD500DC5398 /* TransactionRepositoryTest.swift */,
 				8449A4392971CE2F003ECAAD /* AuthRepositoryTest.swift */,
 			);
 			path = Repositories;
@@ -618,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845D5758298E6CD500DC5398 /* TransactionRepositoryTest.swift in Sources */,
 				8449A403296D9206003ECAAD /* AuthenticateUseCaseTest.swift in Sources */,
 				8449A43A2971CE2F003ECAAD /* AuthRepositoryTest.swift in Sources */,
 				8449A4342971CA71003ECAAD /* SettleTransactionUseCaseTest.swift in Sources */,

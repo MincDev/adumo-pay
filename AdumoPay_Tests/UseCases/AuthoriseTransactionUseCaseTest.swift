@@ -21,7 +21,7 @@ final class AuthoriseTransactionUseCaseTest: XCTestCase {
         self.useCase = AuthoriseTransactionUseCaseImpl()
     }
 
-    func testUseCaseInvokesServiceWithSuccessfulResponse() async {
+    func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
         let mockResult = mockAuthoriseData()
 
         givenSwift(await mockTransRepo.authorise(with: any())).will { _ in
@@ -37,7 +37,7 @@ final class AuthoriseTransactionUseCaseTest: XCTestCase {
         verify(await mockTransRepo.authorise(with: any())).wasCalled()
     }
 
-    func testUseCaseInvokesServiceWithFailedResponse() async {
+    func testUseCaseInvokesRepositoryWithFailedResponse() async {
         let mockError = MockError()
 
         givenSwift(await mockTransRepo.authorise(with: any())).will { _ in
