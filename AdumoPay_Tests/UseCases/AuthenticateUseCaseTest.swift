@@ -22,7 +22,7 @@ final class AuthenticateUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult: AuthData = .init(
+        let mockResult: AuthResponse = .init(
             accessToken: "mock-access-token",
             tokenType: "mock-token-type",
             expiry: 0,

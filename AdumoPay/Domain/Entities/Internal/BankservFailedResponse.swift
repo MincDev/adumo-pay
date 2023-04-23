@@ -1,5 +1,5 @@
 //
-//  BankServResponseDto.swift
+//  BankservFailedResponse.swift
 //  AdumoPay
 //
 //  Created by Christopher Smit on 2023/01/12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BankServResponseDto: Decodable {
+struct BankservFailedResponse: Decodable {
     let body: ResponseBody
 
     struct ResponseBody: Decodable {

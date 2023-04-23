@@ -22,7 +22,7 @@ final class InitiateTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockTransactionData()
+        let mockResult = mockTransactionResponse()
 
         givenSwift(await mockTransRepo.initiate(with: any())).will { _ in
             return mockResult

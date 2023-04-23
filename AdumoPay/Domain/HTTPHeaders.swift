@@ -25,7 +25,7 @@
 import Foundation
 
 /// An order-preserving and case-insensitive representation of HTTP headers.
-public struct HTTPHeaders {
+public struct HTTPHeaders: Equatable {
     private var headers: [HTTPHeader] = []
 
     /// Creates an empty instance.

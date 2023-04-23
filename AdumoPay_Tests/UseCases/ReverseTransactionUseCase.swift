@@ -22,7 +22,7 @@ final class ReverseTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockReverseData()
+        let mockResult = mockReverseResponse()
 
         givenSwift(await mockTransRepo.reverse(transactionId: any())).will { _ in
             return mockResult

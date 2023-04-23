@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct BankservData: Entity {
+internal struct BankservResponse: Entity {
     internal let transactionId: String
     internal let errorCode: String
     internal let message: String

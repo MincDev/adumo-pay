@@ -22,7 +22,7 @@ final class RefundTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockRefundData()
+        let mockResult = mockRefundResponse()
 
         givenSwift(await mockTransRepo.refund(transactionId: any(), for: any())).will { _, _ in
             return mockResult

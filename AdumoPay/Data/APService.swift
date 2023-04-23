@@ -14,14 +14,18 @@ public class APService: APServiceProtocol {
     public static let shared = APService()
     public var delegate: AEClientDelegate?
     public var environment: Environment = .test
-    internal static var authData: AuthData?
-    private var webViewContinuation: CheckedContinuation<APResultCancellable<InitiateData>, Never>?
+    internal static var authData: AuthResponse?
+    private var webViewContinuation: CheckedContinuation<APResultCancellable<InitiateResponse>, Never>?
 
     // Dependencies
     @LazyInjected(Container.useCases) private var useCases
 
-    // Do not allow initialization of class as its a singleton
-    private init() {}
+    // Do not allow initialization of class outside
+    // of module as its a singleton
+    internal init() {
+        // internal initialisation is only allowed
+        // for testing purposes
+    }
 
     /// Authenticates the client ID and secret and initialises the AEClient with authenticated data.
     /// This call must be made before attempting to make any subsequent calls to the framework
@@ -29,11 +33,11 @@ public class APService: APServiceProtocol {
     /// - Parameters:
     ///    - clientId: The client ID obtained from Adumo
     ///    - secret: The client secret obtained from Adumo
-    public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> APResult<Any?> {
+    public func authenticate(withMerchantId clientId: String, andSecret secret: String) async -> APResult<NoResponse> {
         do {
             let data = try await useCases.authenticate.execute(for: clientId, using: secret)
             APService.authData = data
-            return .success(nil)
+            return .success(.none)
         } catch {
             return .failure(error: error)
         }
@@ -53,8 +57,12 @@ public class APService: APServiceProtocol {
     ///
     /// - Parameters:
     ///    - transaction: The transaction object to process
-    public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> APResultCancellable<InitiateData> {
-        transaction.setToken(APService.authData!.accessToken)
+    public func initiate(rootViewController: UIViewController, with transaction: Transaction) async -> APResultCancellable<InitiateResponse> {
+        guard let authToken = APService.authData?.accessToken else {
+            return .failure(error: APServiceError.notAuthenticated)
+        }
+        
+        transaction.setToken(authToken)
         do {
             let data = try await useCases.initiate.execute(with: transaction)
 
@@ -114,8 +122,8 @@ public class APService: APServiceProtocol {
     ///    - amount: The amount to be authorised
     ///    - cvv: The card cvv number if required. This is indicated from the initiate response
     /// - Returns: AuthoriseResult
-    public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> APResult<AuthoriseData> {
-        let authDto = AuthoriseDto(transactionId: transactionId, amount: amount, cvv: cvv)
+    public func authorise(transactionId: String, amount: Double, cvv: Int?) async -> APResult<AuthoriseResponse> {
+        let authDto = Authorise(transactionId: transactionId, amount: amount, cvv: cvv)
         do {
             let data = try await useCases.authorise.execute(with: authDto)
             return .success(data)
@@ -129,7 +137,7 @@ public class APService: APServiceProtocol {
     ///  - Parameters:
     ///     - transactionId: The UUID of the transaction to be reversed
     ///  - Returns: ReverseResult
-    public func reverse(transactionId: String) async -> APResult<ReverseData> {
+    public func reverse(transactionId: String) async -> APResult<ReverseResponse> {
         do {
             let data = try await useCases.reverse.execute(transactionId: transactionId)
             return .success(data)
@@ -144,8 +152,8 @@ public class APService: APServiceProtocol {
     ///    - transactionId: The UUID of the transaction to be settled
     ///    - amount: The amount to be settled
     /// - Returns: SettleResult
-    public func settle(transactionId: String, amount: Double) async -> APResult<SettleData> {
-        let settleDto = SettleDto(transactionId: transactionId, amount: amount)
+    public func settle(transactionId: String, amount: Double) async -> APResult<SettleResponse> {
+        let settleDto = Settle(transactionId: transactionId, amount: amount)
         do {
             let data = try await useCases.settle.execute(with: settleDto)
             return .success(data)
@@ -160,8 +168,8 @@ public class APService: APServiceProtocol {
     ///    - transactionId: The UUID of the transaction to be settled
     ///    - amount: The amount to be settled
     /// - Returns: RefundResult
-    public func refund(transactionId: String, amount: Double) async -> APResult<RefundData> {
-        let refundDto = RefundDto(transactionId: transactionId, amount: amount)
+    public func refund(transactionId: String, amount: Double) async -> APResult<RefundResponse> {
+        let refundDto = Refund(transactionId: transactionId, amount: amount)
         do {
             let data = try await useCases.refund.execute(with: refundDto)
             return .success(data)
@@ -172,7 +180,7 @@ public class APService: APServiceProtocol {
 }
 
 internal class APServiceInternal: APServiceInternalProtocol {
-    internal func getAuthData() -> AuthData? {
+    internal func getAuthData() -> AuthResponse? {
         return APService.authData
     }
 }
@@ -224,7 +232,7 @@ extension APService: Adumo3DSecureDelegate {
     private func checkUserCancelled(from payload: String) -> Bool {
         if let decodedData = Data(base64Encoded: payload) {
             do {
-                let bsData = try JSONDecoder().decode(BankServResponseDto.self, from: decodedData)
+                let bsData = try JSONDecoder().decode(BankservFailedResponse.self, from: decodedData)
                 if bsData.body.statusCode == BankServStatusCode.authFailed.rawValue {
                     return true
                 }

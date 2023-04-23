@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class Transaction: Encodable {
+public class Transaction: Encodable, Equatable {
     /// Your Application UID provided by Adumo Online
     var applicationUid: String
 
@@ -168,5 +168,27 @@ public class Transaction: Encodable {
         try container.encode(authCallbackUrl, forKey: .authCallbackUrl)
         try container.encode(profileUid, forKey: .profileUid)
         try container.encode(token, forKey: .token)
+    }
+
+    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        // Compare each property of the two instances for equality
+        return lhs.applicationUid == rhs.applicationUid &&
+        lhs.merchantUid == rhs.merchantUid &&
+        lhs.value == rhs.value &&
+        lhs.merchantReference == rhs.merchantReference &&
+        lhs.ipAddress == rhs.ipAddress &&
+        lhs.userAgent == rhs.userAgent &&
+        lhs.budgetPeriod == rhs.budgetPeriod &&
+        lhs.description == rhs.description &&
+        lhs.originatingTransactionId == rhs.originatingTransactionId &&
+        lhs.cardNumber == rhs.cardNumber &&
+        lhs.expiryMonth == rhs.expiryMonth &&
+        lhs.expiryYear == rhs.expiryYear &&
+        lhs.cardHolderFullName == rhs.cardHolderFullName &&
+        lhs.saveCardDetails == rhs.saveCardDetails &&
+        lhs.uci == rhs.uci &&
+        lhs.authCallbackUrl == rhs.authCallbackUrl &&
+        lhs.profileUid == rhs.profileUid &&
+        lhs.token == rhs.token
     }
 }

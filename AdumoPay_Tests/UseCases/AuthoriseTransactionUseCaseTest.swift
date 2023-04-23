@@ -22,14 +22,14 @@ final class AuthoriseTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockAuthoriseData()
+        let mockResult = mockAuthoriseResponse()
 
         givenSwift(await mockTransRepo.authorise(with: any())).will { _ in
             return mockResult
         }
 
         do {
-            let result = try await useCase.execute(with: mockAuthoriseDto())
+            let result = try await useCase.execute(with: mockAuthorise())
             XCTAssertEqual(mockResult, result)
         } catch {
             XCTFail()
@@ -45,7 +45,7 @@ final class AuthoriseTransactionUseCaseTest: XCTestCase {
         }
 
         do {
-            let _ = try await useCase.execute(with: mockAuthoriseDto())
+            let _ = try await useCase.execute(with: mockAuthorise())
             XCTFail()
         } catch {
             XCTAssertEqual(mockError, MockError())

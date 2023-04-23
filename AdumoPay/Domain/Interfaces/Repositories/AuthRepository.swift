@@ -14,5 +14,5 @@ protocol AuthRepository {
     ///    - clientId: The client id to be used in authentication
     ///    - secret: The client secret to be used in authentication
     /// - Returns: AuthData
-    func getToken(for clientId: String, using secret: String) async throws -> AuthData
+    func getToken(for clientId: String, using secret: String) async throws -> AuthResponse
 }

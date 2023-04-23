@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RefundDto: Encodable {
+struct Refund: Encodable, Equatable {
     let transactionId: String
     let amount: Double
 

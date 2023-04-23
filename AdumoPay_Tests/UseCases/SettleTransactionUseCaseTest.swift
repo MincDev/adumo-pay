@@ -22,7 +22,7 @@ final class SettleTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockSettleData()
+        let mockResult = mockSettleResponse()
 
         givenSwift(await mockTransRepo.settle(transactionId: any(), for: any())).will { _, _ in
             return mockResult

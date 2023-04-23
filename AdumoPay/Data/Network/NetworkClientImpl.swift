@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkClientImpl: NetworkClient {
+final class NetworkClientImpl: NetworkClient {
     var headers: HTTPHeaders?
     var debugMode: Bool = false
     var httpMethod: HTTPMethod = .get
@@ -43,7 +43,7 @@ struct NetworkClientImpl: NetworkClient {
                 let httpStatusCode = (response as? HTTPURLResponse)?.statusCode ?? 500
                 let responseBody = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) ?? "Internal Server Error"
 
-                if debugMode {
+                if self.debugMode {
                     debugPrint("Response Body: ******************* \n\n\(responseBody)")
                 }
 

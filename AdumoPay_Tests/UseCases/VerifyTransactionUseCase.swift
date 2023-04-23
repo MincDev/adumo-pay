@@ -22,14 +22,14 @@ final class VerifyTransactionUseCaseTest: XCTestCase {
     }
 
     func testUseCaseInvokesRepositoryWithSuccessfulResponse() async {
-        let mockResult = mockBankServData()
+        let mockResult = mockBankservResponse()
 
         givenSwift(await mockTransRepo.verify(with: any())).will { _ in
             return mockResult
         }
 
         do {
-            let result = try await useCase.execute(with: mockBankServDto())
+            let result = try await useCase.execute(with: mockBankserv())
             XCTAssertEqual(mockResult, result)
         } catch {
             XCTFail()
@@ -45,7 +45,7 @@ final class VerifyTransactionUseCaseTest: XCTestCase {
         }
 
         do {
-            let _ = try await useCase.execute(with: mockBankServDto())
+            let _ = try await useCase.execute(with: mockBankserv())
             XCTFail()
         } catch {
             XCTAssertEqual(mockError, MockError())

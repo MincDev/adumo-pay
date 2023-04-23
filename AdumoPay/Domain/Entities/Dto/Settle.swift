@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SettleDto: Encodable {
+struct Settle: Encodable, Equatable {
     let transactionId: String
     let amount: Double
 

@@ -8,10 +8,10 @@
 import Foundation
 
 protocol TransactionRepository {
-    func initiate(with transaction: Transaction) async throws -> TransactionData
-    func verify(with body: BankservDto) async throws -> BankservData
-    func authorise(with transaction: AuthoriseDto) async throws -> AuthoriseData
-    func reverse(transactionId: String) async throws -> ReverseData
-    func settle(transactionId: String, for amount: Double) async throws -> SettleData
-    func refund(transactionId: String, for amount: Double) async throws -> RefundData
+    func initiate(with transaction: Transaction) async throws -> TransactionResponse
+    func verify(with body: Bankserv) async throws -> BankservResponse
+    func authorise(with transaction: Authorise) async throws -> AuthoriseResponse
+    func reverse(transactionId: String) async throws -> ReverseResponse
+    func settle(transactionId: String, for amount: Double) async throws -> SettleResponse
+    func refund(transactionId: String, for amount: Double) async throws -> RefundResponse
 }

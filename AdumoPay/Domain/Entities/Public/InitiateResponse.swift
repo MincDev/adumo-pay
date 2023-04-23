@@ -1,5 +1,5 @@
 //
-//  InitiateData.swift
+//  InitiateResponse.swift
 //  AdumoPay
 //
 //  Created by Christopher Smit on 2023/01/11.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct InitiateData {
+public struct InitiateResponse: Entity {
     /// UID of transaction
     public let uidTransactionIndex: String
     

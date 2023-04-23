@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionData: Entity {
+struct TransactionResponse: Entity {
     /// UID of transaction
     let transactionId: String?
 
